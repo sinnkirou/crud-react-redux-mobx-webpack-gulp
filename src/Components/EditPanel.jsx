@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class EditPanel extends Component {
-	handleSubmit(e) {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		const title = this.getTitle.value;
 		const message = this.getMessage.value;
@@ -14,7 +14,7 @@ class EditPanel extends Component {
 			this.props.updatePost({ id: this.props.post.id, data });
 		} else {
 			this.props.addPost({
-				data
+				...data
 			});
 			this.getTitle.value = '';
 			this.getMessage.value = '';

@@ -1,4 +1,4 @@
-export const addPost = ({ data }) => ({
+export const addPost = ({ ...data }) => ({
 	type: 'ADD_POST',
 	data: {
 		editing: false,
