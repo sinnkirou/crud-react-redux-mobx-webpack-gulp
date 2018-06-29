@@ -22,6 +22,8 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.0.1",
     "eslint-plugin-react": "^7.10.0",
+    "jsdom": "11.11.0",
+    "jsdom-global": "3.0.2",
     "mocha": "^5.2.0",
     "react-test-renderer": "^16.4.1"
   },
@@ -31,6 +33,6 @@
     "eject": "react-scripts eject",
     "eslint": "eslint src test --ext js,jsx",
     "eslint:fix": "eslint src test --ext js,jsx --fix",
-    "test": "mocha \"test/**/*.spec.js\" --compilers js:babel-core/register"
+    "test": "mocha \"test/**/*.spec.js\" --compilers js:babel-core/register  --require test/test_helper.js"
   }
 }

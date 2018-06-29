@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreatePost from "../Containers/CreatePost";
+import PostForm from "../Containers/PostForm";
 import AllPosts from "../Containers/AllPosts";
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
 				<div className="navbar">
 					<h2 className="center ">Post It</h2>
 				</div>
-				<CreatePost />
+				<PostForm />
 				<AllPosts />
 			</div>
 		);

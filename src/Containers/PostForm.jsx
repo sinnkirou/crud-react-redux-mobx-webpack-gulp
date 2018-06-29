@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addPost } from "../Actions";
-import EditPanel from "../Components/EditPanel";
+import EditablePost from "../Components/EditablePost";
 import PropTypes from "prop-types";
 
-class CreatePost extends Component {
+class PostForm extends Component {
   
 	render() {
 		return (
 			<div className="post-container">
 				<h1 className="post_heading">Create Post</h1>
-				<EditPanel
+				<EditablePost
 					key="post-form"
 					addPost={this.props.addPost}
 					editing={false}
@@ -20,7 +20,7 @@ class CreatePost extends Component {
 	}
 }
 
-CreatePost.propTypes = {
+PostForm.propTypes = {
 	addPost: PropTypes.func.isRequired
 };
 
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
 	addPost: (payload) => dispatch(addPost(payload))
 });
 
-export default connect(null, mapDispatchToProps)(CreatePost);
+export default connect(null, mapDispatchToProps)(PostForm);

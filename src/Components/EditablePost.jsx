@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class EditPanel extends Component {
+class EditablePost extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const title = this.getTitle.value;
@@ -53,11 +53,11 @@ class EditPanel extends Component {
 	}
 }
 
-EditPanel.propTypes = {
-	post: PropTypes.element.isRequired,
+EditablePost.propTypes = {
+	post: PropTypes.object.isRequired,
 	editing: PropTypes.bool.isRequired,
 	updatePost: PropTypes.func.isRequired,
 	addPost: PropTypes.func.isRequired
 };
 
-export default EditPanel;
+export default EditablePost;

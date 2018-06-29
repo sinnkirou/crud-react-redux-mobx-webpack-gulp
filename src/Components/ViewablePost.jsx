@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class Post extends Component {
+class ViewablePost extends Component {
 	render() {
 		return <div className="post">
 			<h2 className="post_title">{this.props.post.title}</h2>
@@ -23,11 +23,11 @@ class Post extends Component {
 	}
 }
 
-Post.propTypes = {
-	post: PropTypes.element.isRequired,
+ViewablePost.propTypes = {
+	post: PropTypes.object.isRequired,
 	editPost: PropTypes.func.isRequired,
 	deletePost: PropTypes.func.isRequired
 };
 
 
-export default Post;
+export default ViewablePost;

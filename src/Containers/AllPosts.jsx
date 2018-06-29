@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Post from "../Components/Post";
-import EditPanel from "../Components/EditPanel";
+import ViewablePost from "../Components/ViewablePost";
+import EditablePost from "../Components/EditablePost";
 import { deletePost, editPost, updatePost } from "../Actions";
 import PropTypes from "prop-types";
 
@@ -19,14 +19,14 @@ class AllPosts extends Component {
 				posts.push(
 					<div key={post.id}>
 						{post.editing ? (
-							<EditPanel
+							<EditablePost
 								post={post}
 								key={post.id}
 								updatePost={this.props.updatePost}
 								editing={true}
 							/>
 						) : (
-							<Post
+							<ViewablePost
 								post={post}
 								key={post.id}
 								deletePost={this.props.deletePost}
