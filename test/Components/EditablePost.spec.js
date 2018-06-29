@@ -1,13 +1,11 @@
 import { expect } from "chai";
-import { configure, shallow, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow, mount } from "enzyme";
 import React from "react";
 import _ from "lodash";
 import EditablePost from "../../src/Components/EditablePost";
 
 describe("Editable post component testing", function () {
 	beforeEach(() => {
-		configure({ adapter: new Adapter() });
 		this.props = {
 			post: {
 				editing: false,
