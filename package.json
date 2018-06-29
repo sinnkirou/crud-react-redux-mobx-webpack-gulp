@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -28,8 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "eslint": "eslint src --ext js,jsx",
-    "eslint:fix": "eslint src --ext js,jsx --fix",
-    "test": "mocha \"test/**/*@(.js|.jsx)\" --compilers js:babel-core/register"
+    "eslint": "eslint src test --ext js,jsx",
+    "eslint:fix": "eslint src test --ext js,jsx --fix",
+    "test": "mocha \"test/**/*.spec.js\" --compilers js:babel-core/register"
   }
 }

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Post from '../Components/Post';
-import EditPanel from '../Components/EditPanel';
-import { deletePost, editPost, updatePost } from '../Actions';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Post from "../Components/Post";
+import EditPanel from "../Components/EditPanel";
+import { deletePost, editPost, updatePost } from "../Actions";
+import PropTypes from "prop-types";
 
 class AllPosts extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { id: '' };
+		this.state = { id: "" };
 		this.onChangeHandle = this.onChangeHandle.bind(this);
 	}
 
@@ -60,7 +60,7 @@ class AllPosts extends Component {
 						/>
 					</div>
 				) : (
-					''
+					""
 				)}
 				<br/>
 				{this.getPosts()}

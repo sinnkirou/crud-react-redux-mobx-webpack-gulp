@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addPost } from '../Actions';
-import EditPanel from '../Components/EditPanel';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addPost } from "../Actions";
+import EditPanel from "../Components/EditPanel";
+import PropTypes from "prop-types";
 
 class CreatePost extends Component {
   

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import CreatePost from '../Containers/CreatePost';
-import AllPosts from '../Containers/AllPosts';
+import React, { Component } from "react";
+import CreatePost from "../Containers/CreatePost";
+import AllPosts from "../Containers/AllPosts";
 
 class App extends Component {
 	render() {
@@ -16,5 +16,3 @@ class App extends Component {
 	}
 }
 export default App;
-
-
