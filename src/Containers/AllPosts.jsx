@@ -9,10 +9,9 @@ class AllPosts extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { id: "" };
-		this.onChangeHandle = this.onChangeHandle.bind(this);
 	}
 
-	getPosts() {
+	getPosts = () => {
 		var posts = [];
 		this.props.posts.forEach(post => {
 			if (!this.state.id || (this.state.id && post.id === Number(this.state.id))) {
@@ -40,7 +39,8 @@ class AllPosts extends Component {
 		return posts;
 	}
 
-	onChangeHandle(e) {
+	onChangeHandle = (e) => {
+		console.log('....'+e.target.value);
 		e.preventDefault();
 		this.setState({ id: e.target.value });
 	}

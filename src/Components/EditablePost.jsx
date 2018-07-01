@@ -54,10 +54,10 @@ class EditablePost extends Component {
 }
 
 EditablePost.propTypes = {
-	post: PropTypes.object.isRequired,
+	post: PropTypes.object,
 	editing: PropTypes.bool.isRequired,
-	updatePost: PropTypes.func.isRequired,
-	addPost: PropTypes.func.isRequired
+	updatePost: PropTypes.func,
+	addPost: PropTypes.func
 };
 
 export default EditablePost;
