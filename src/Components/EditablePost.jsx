@@ -25,7 +25,7 @@ class EditablePost extends Component {
 		const post = this.props.post;
 
 		return (
-			<div key={post ? post.id : "default"} className="post">
+			<div key={`editablePost${post ? post.id: "default"}`} className="post">
 				<form className="form" onSubmit={this.handleSubmit}>
 					<input
 						required

@@ -4,14 +4,13 @@ import { addPost } from "../Actions";
 import EditablePost from "../Components/EditablePost";
 import PropTypes from "prop-types";
 
-class PostForm extends Component {
+export class PostForm extends Component {
   
 	render() {
 		return (
-			<div className="post-container">
+			<div className="post-container" key="PostForm">
 				<h1 className="post_heading">Create Post</h1>
 				<EditablePost
-					key="post-form"
 					addPost={this.props.addPost}
 					editing={false}
 				/>

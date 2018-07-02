@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    jasmine: true
+    mocha: true
   },
   parser: "babel-eslint",
   extends: ["eslint:recommended", "plugin:react/recommended"],

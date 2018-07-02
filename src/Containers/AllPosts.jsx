@@ -5,7 +5,7 @@ import EditablePost from "../Components/EditablePost";
 import { deletePost, editPost, updatePost } from "../Actions";
 import PropTypes from "prop-types";
 
-class AllPosts extends Component {
+export class AllPosts extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { id: "" };
@@ -20,14 +20,12 @@ class AllPosts extends Component {
 						{post.editing ? (
 							<EditablePost
 								post={post}
-								key={post.id}
 								updatePost={this.props.updatePost}
 								editing={true}
 							/>
 						) : (
 							<ViewablePost
 								post={post}
-								key={post.id}
 								deletePost={this.props.deletePost}
 								editPost={this.props.editPost}
 							/>
@@ -40,14 +38,13 @@ class AllPosts extends Component {
 	}
 
 	onChangeHandle = (e) => {
-		console.log('....'+e.target.value);
 		e.preventDefault();
 		this.setState({ id: e.target.value });
 	}
 
 	render() {
 		return (
-			<div>
+			<div key="AllPosts">
 				{this.props.posts && this.props.posts.length > 0 ? (
 					<div className="allPosts">
 						<h1 className="post_heading">All Posts</h1>

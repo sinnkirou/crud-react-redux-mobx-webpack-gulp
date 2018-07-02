@@ -2,7 +2,7 @@ import { expect } from "chai";
 import postReducer from "../../src/Reducers/postReducer";
 import _ from "lodash";
 
-describe("reducers testing", function () {
+describe("Reducers testing", function () {
 	beforeEach(() => {
 		this.state = [{
 			editing: false,
