@@ -23,7 +23,7 @@ describe("Editable post component testing", function () {
 		this.renderedComponent.unmount();
 	});
 
-	it("should render", () => {
+	it("should render prefilled post", () => {
 		const props = _.cloneDeep(this.props);
 		this.renderedComponent = shallow(<EditablePost {...props} />);
 		expect(this.renderedComponent).to.have.lengthOf(1);
@@ -37,6 +37,7 @@ describe("Editable post component testing", function () {
 
 	it("should be able to add post", () => {
 		const props = _.cloneDeep(this.props);
+		props.post = undefined;
 		let triggered = false;
 		props.editing = false;
 		props.addPost = () => {

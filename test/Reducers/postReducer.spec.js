@@ -15,6 +15,10 @@ describe("Reducers testing", function () {
 		};
 	});
 
+	it("when default", () => {
+		expect(postReducer([], {})).to.have.lengthOf(0);
+	});
+
 	it("can handle addPost", () => {
 		const state = _.cloneDeep(this.state);
 		const action = _.cloneDeep(this.action);
@@ -47,21 +51,34 @@ describe("Reducers testing", function () {
 		);
 	});
 
-	it("can handle editPost", () => {
+	it("can handle editPost when id matched", () => {
 		const state = _.cloneDeep(this.state);
 		const action = _.cloneDeep(this.action);
 		action.type = "EDIT_POST";
+		action.id = 1;
 		expect(JSON.stringify(postReducer(state, action))).to.equal(
 			JSON.stringify([
 				{
 					editing: true,
-					...state[0]
+					message: "message",
+					title: "title",
+					id: 1
 				}
 			])
 		);
 	});
 
-	it("can handle updatePost", () => {
+	it("can handle editPost when id not match", () => {
+		const state = _.cloneDeep(this.state);
+		const action = _.cloneDeep(this.action);
+		action.type = "EDIT_POST";
+		action.id = 2;
+		expect(JSON.stringify(postReducer(state, action))).to.equal(
+			JSON.stringify(state)
+		);
+	});
+
+	it("can handle updatePost when id matched", () => {
 		const state = _.cloneDeep(this.state);
 		const action = _.cloneDeep(this.action);
 		action.type = "UPDATE_POST";
@@ -79,6 +96,20 @@ describe("Reducers testing", function () {
 					id: 1
 				}
 			])
+		);
+	});
+
+	it("can handle updatePost when id not match", () => {
+		const state = _.cloneDeep(this.state);
+		const action = _.cloneDeep(this.action);
+		action.type = "UPDATE_POST";
+		action.id = 2;
+		action.data = {
+			message: "newmessage",
+			title: "newtitle",
+		};
+		expect(JSON.stringify(postReducer(state, action))).to.equal(
+			JSON.stringify(state)
 		);
 	});
 });

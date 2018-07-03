@@ -79,6 +79,12 @@ describe("AllPosts component testing", function () {
 			expect(this.searchBox).to.have.lengthOf(1);
 		});
 
+		it("should not render when no posts", () => {
+			this.renderedComponent.setProps({posts: []});
+			this.searchBox = this.renderedComponent.find("input");
+			expect(this.searchBox).to.have.lengthOf(0);
+		});
+
 		it("should display at least one post when search successfully", () => {
 			expect(this.renderedComponent.state().id).to.equal("");
 			this.searchBox.simulate("change", {
