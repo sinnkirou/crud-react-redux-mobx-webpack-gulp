@@ -19,5 +19,8 @@ module.exports = {
       jsx: true,
       modules: true
     }
+  },
+  globals: {
+    "__dirname": false
   }
 };
