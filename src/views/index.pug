@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  body
+    script.
+      window.__STATE__= !{JSON.stringify(preloadedState)};
+    .content
+      #app.wrap-inner 
+        #{content}
+    if content
+      script(src="build/server.js")
+    else
+      script(src="build/client.js")
+    

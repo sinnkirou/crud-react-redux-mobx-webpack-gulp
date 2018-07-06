@@ -1,9 +1,10 @@
 const path = require('path');
+var src = path.join(__dirname, 'src');
 
 module.exports = {
   entry: {
-    client: './src/views/client.js',
-    server: './src/views/server.js',
+    client: path.join(src, 'views/client.js'),
+    server: path.join(src, 'views/server.js')
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -14,8 +15,23 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.js|jsx$/, exclude: /node_modules/, loader: "babel-loader" }
+      { 
+        test: /\.js|jsx$/, 
+        exclude: /node_modules/, 
+        loader: "babel-loader" 
+      },
+      {
+        test: /\.sass$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      }
     ]
- }
-
+  },
+  devServer: {
+    hot: true,
+    inline: true,
+  },
 }
