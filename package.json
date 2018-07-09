@@ -49,7 +49,7 @@
     "pack": "webpack --config webpack.config.js",
     "babel": "babel src -d build",
     "build": "npm run pack && npm run babel",
-    "eject": "react-scripts eject",
+    "debug": "set DEBUG=crud-react-redux:* & npm start",
     "eslint": "eslint src test index.js --ext js,jsx",
     "eslint:fix": "eslint src test index.js --ext js,jsx --fix",
     "testwithoutreport": "mocha \"test/**/*.spec.js\" --compilers js:babel-core/register  --require test/test_helper.js",
