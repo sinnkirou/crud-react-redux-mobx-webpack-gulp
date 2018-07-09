@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  link(rel="stylesheet" type="text/css" href="public/stylesheets/styles.css")
   body
     script.
       window.__STATE__= !{JSON.stringify(preloadedState)};

@@ -1,4 +1,5 @@
 const path = require('path');
+
 var src = path.join(__dirname, 'src');
 
 module.exports = {
@@ -29,9 +30,5 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       }
     ]
-  },
-  devServer: {
-    hot: true,
-    inline: true,
-  },
+  }
 }

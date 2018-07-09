@@ -5,6 +5,8 @@ import ssr from "./build/views/ssr";
 const app = express();
 // Serving static files
 app.use("/build", express.static(path.resolve(__dirname, "build")));
+app.use(express.static("src/public"));
+
 // view engine setup
 app.set("views", path.join(__dirname, "src/views"));
 app.set("view engine", "pug");
