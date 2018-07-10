@@ -35,6 +35,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "clean-webpack-plugin": "^0.1.19",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
@@ -57,10 +58,8 @@
     "webpack-cli": "^3.0.8"
   },
   "scripts": {
-    "start": "babel-node index.js",
-    "pack": "webpack --config webpack.config.js --mode development",
-    "babel": "babel src -d build",
-    "build": "npm run pack && npm run babel",
+    "start": "npm run build && babel-node index.js",
+    "build": "webpack --config webpack.config.js --mode development",
     "debug": "set DEBUG=crud-react-redux:* & npm start",
     "eslint": "eslint src test index.js --ext js,jsx",
     "eslint:fix": "eslint src test index.js --ext js,jsx --fix",

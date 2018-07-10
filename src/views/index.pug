@@ -2,11 +2,11 @@ extends layout
 
 block content
   body
-    script.
-      window.__STATE__= !{JSON.stringify(preloadedState)};
     .content
       #app.wrap-inner!= content
     if content
+      script.
+        window.__STATE__= !{JSON.stringify(preloadedState)}
       script(src="build/server.js")
     else
       script(src="build/client.js")

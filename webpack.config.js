@@ -1,6 +1,7 @@
 const path = require('path');
 
 var src = path.join(__dirname, 'src');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -30,5 +31,8 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       }
     ]
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin(['build'])
+  ],
 }

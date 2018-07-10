@@ -4,7 +4,7 @@ import express from "express";
 import http from "http";
 import logger from "morgan";
 import path from "path";
-import ssr from "./build/views/ssr";
+import ssr from "./src/views/ssr";
 var debug = require("debug")("crud-react-redux:server"); // eslint-disable-line no-undef
 
 const app = express();
