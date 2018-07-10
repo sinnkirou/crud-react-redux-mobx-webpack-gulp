@@ -5,8 +5,7 @@ block content
     script.
       window.__STATE__= !{JSON.stringify(preloadedState)};
     .content
-      #app.wrap-inner 
-        #{content}
+      #app.wrap-inner!= content
     if content
       script(src="build/server.js")
     else

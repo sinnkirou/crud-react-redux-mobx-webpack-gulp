@@ -58,7 +58,7 @@
   },
   "scripts": {
     "start": "babel-node index.js",
-    "pack": "webpack --config webpack.config.js",
+    "pack": "webpack --config webpack.config.js --mode development",
     "babel": "babel src -d build",
     "build": "npm run pack && npm run babel",
     "debug": "set DEBUG=crud-react-redux:* & npm start",
