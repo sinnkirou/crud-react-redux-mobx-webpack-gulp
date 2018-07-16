@@ -6,7 +6,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   entry: {
     client: path.join(src, 'views/client.js'),
-    server: path.join(src, 'views/server.js')
   },
   output: {
     path: path.resolve(__dirname, 'build'),

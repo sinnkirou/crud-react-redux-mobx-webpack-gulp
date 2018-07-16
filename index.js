@@ -4,7 +4,6 @@ import express from "express";
 import http from "http";
 import logger from "morgan";
 import path from "path";
-import ssr from "./src/views/ssr";
 var debug = require("debug")("crud-react-redux:server"); // eslint-disable-line no-undef
 
 const app = express();
@@ -20,18 +19,7 @@ app.use(express.static(path.join(__dirname, "src/public")));
 app.set("views", path.join(__dirname, "src/views"));
 app.set("view engine", "pug");
 
-// server rendered home page
 app.get("/", (req, res) => {
-	const { preloadedState, content } = ssr();
-	res.render("index", {
-		title: "Server Rendered Page",
-		preloadedState,
-		content
-	});
-});
-
-// Pure client side rendered page
-app.get("/client", (req, res) => {
 	res.render("index", { title: "Client Rendered page" });
 });
 
