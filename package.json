@@ -62,8 +62,8 @@
     "start": "npm run build && babel-node dist/main.js",
     "build": "webpack --config webpack.config.js --mode development",
     "debug": "set DEBUG=crud-react-redux:* & npm start",
-    "eslint": "eslint src test index.js --ext js,jsx",
-    "eslint:fix": "eslint src test index.js --ext js,jsx --fix",
+    "eslint": "eslint src test --ext js,jsx",
+    "eslint:fix": "eslint src test --ext js,jsx --fix",
     "testwithoutreport": "mocha \"test/**/*.spec.js\" --compilers js:babel-core/register  --require test/test_helper.js",
     "test": "cross-env NODE_ENV=test nyc --extension .jsx --extension .es6 --reporter=lcov --reporter=text --exclude \"test/**/*\"  mocha \"test/**/*.spec.js\" -t 10000 --require test/test_helper.js --compilers js:babel-core/register"
   }
