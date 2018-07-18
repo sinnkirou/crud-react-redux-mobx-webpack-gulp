@@ -12,11 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Serving static files
-app.use("/build", express.static(path.resolve(__dirname, "build")));
-app.use(express.static(path.join(__dirname, "src/public")));
+app.use("/dist", express.static(path.resolve(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // view engine setup
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.get("/", (req, res) => {

@@ -55,10 +55,11 @@
     "react-test-renderer": "^16.4.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.14.0",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
-    "start": "npm run build && babel-node index.js",
+    "start": "npm run build && babel-node dist/main.js",
     "build": "webpack --config webpack.config.js --mode development",
     "debug": "set DEBUG=crud-react-redux:* & npm start",
     "eslint": "eslint src test index.js --ext js,jsx",

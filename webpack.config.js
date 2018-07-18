@@ -1,16 +1,16 @@
 const path = require('path');
-
 var src = path.join(__dirname, 'src');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = {
+const clientConfig = {
   entry: {
-    client: path.join(src, 'views/client.js'),
+    client: path.join(src, 'client.js'),
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: "[name].js"
   },
+  target: "web",
   resolve: {
     extensions: [ '.js', '.jsx']
   },
@@ -32,6 +32,21 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['build'])
+    new CleanWebpackPlugin(['dist'])
+  ]
+};
+
+var nodeExternals = require('webpack-node-externals');
+
+const serverConfig = {
+  target: "node",
+  node: {
+    __dirname: true
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist'])
   ],
-}
+  externals: [nodeExternals()]
+};
+
+module.exports = [ serverConfig, clientConfig ];
