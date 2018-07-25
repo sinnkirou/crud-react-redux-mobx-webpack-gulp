@@ -1,25 +1,28 @@
 const path = require('path');
 var src = path.join(__dirname, 'src');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 const clientConfig = {
+  mode: "development",
+  context: __dirname,
   entry: {
-    client: path.join(src, 'client.js'),
+    client: [path.join(src, 'client.js'), 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000']
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: "[name].js"
+    path: __dirname,
+    filename: '[name].js',
+    publicPath: '/',
   },
   target: "web",
   resolve: {
-    extensions: [ '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [
-      { 
-        test: /\.js|jsx$/, 
-        exclude: /node_modules/, 
-        loader: "babel-loader" 
+      {
+        test: /\.js|jsx$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
       },
       {
         test: /\.sass$/,
@@ -32,21 +35,22 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'])
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 };
 
-var nodeExternals = require('webpack-node-externals');
+// var nodeExternals = require('webpack-node-externals');
 
-const serverConfig = {
-  target: "node",
-  node: {
-    __dirname: true
-  },
-  plugins: [
-    new CleanWebpackPlugin(['dist'])
-  ],
-  externals: [nodeExternals()]
-};
+// const serverConfig = {
+//   target: "node",
+//   node: {
+//     __dirname: true
+//   },
+//   plugins: [
+//     new CleanWebpackPlugin(['dist'])
+//   ],
+//   externals: [nodeExternals()]
+// };
 
-module.exports = [ serverConfig, clientConfig ];
+module.exports = clientConfig;

@@ -4,6 +4,9 @@ import express from "express";
 import http from "http";
 import logger from "morgan";
 import path from "path";
+import webpack from "webpack";
+import webpackConfig from "../webpack.config";
+
 var debug = require("debug")("crud-react-redux:server"); // eslint-disable-line no-undef
 
 const app = express();
@@ -11,6 +14,14 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Applying webpack hot middleware
+var compiler = webpack(webpackConfig);
+app.use(require("webpack-dev-middleware")(compiler, { // eslint-disable-line no-undef
+	noInfo: true, publicPath: webpackConfig.output.publicPath
+}));
+app.use(require("webpack-hot-middleware")(compiler));// eslint-disable-line no-undef
+
 // Serving static files
 app.use("/dist", express.static(path.resolve(__dirname, "../dist")));
 app.use(express.static(path.join(__dirname, "public")));
