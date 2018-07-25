@@ -5,13 +5,16 @@ import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./Reducers";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import { AppContainer } from "react-hot-loader";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
+	<AppContainer>
+		<Provider store={store}>
+			<App /> 
+		</Provider>
+	</AppContainer>,
 	document.querySelector("#app")
 );
 

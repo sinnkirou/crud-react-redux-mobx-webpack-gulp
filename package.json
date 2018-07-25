@@ -10,7 +10,8 @@
     ],
     "plugins": [
       "transform-class-properties",
-      "transform-object-rest-spread"
+      "transform-object-rest-spread",
+      "react-hot-loader/babel"
     ],
     "sourceMaps": "inline",
     "retainLines": true
@@ -52,6 +53,7 @@
     "morgan": "~1.9.0",
     "nyc": "^12.0.2",
     "pug": "^2.0.0-beta11",
+    "react-hot-loader": "^4.3.3",
     "react-test-renderer": "^16.4.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.14.0",
