@@ -1,10 +1,10 @@
 const path = require('path');
 var src = path.join(__dirname, 'src');
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const clientConfig = {
   mode: "development",
-  context: __dirname,
   entry: {
     client: [path.join(src, 'client.js'), 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000']
   },
@@ -40,17 +40,17 @@ const clientConfig = {
   ]
 };
 
-// var nodeExternals = require('webpack-node-externals');
+var nodeExternals = require('webpack-node-externals');
 
-// const serverConfig = {
-//   target: "node",
-//   node: {
-//     __dirname: true
-//   },
-//   plugins: [
-//     new CleanWebpackPlugin(['dist'])
-//   ],
-//   externals: [nodeExternals()]
-// };
+const serverConfig = {
+  target: "node",
+  node: {
+    __dirname: true
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist'])
+  ],
+  externals: [nodeExternals()]
+};
 
-module.exports = clientConfig;
+module.exports = [clientConfig];

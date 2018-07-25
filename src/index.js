@@ -16,11 +16,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Applying webpack hot middleware
-var compiler = webpack(webpackConfig);
-app.use(require("webpack-dev-middleware")(compiler, { // eslint-disable-line no-undef
-	noInfo: true, publicPath: webpackConfig.output.publicPath
-}));
-app.use(require("webpack-hot-middleware")(compiler));// eslint-disable-line no-undef
+webpackConfig.map((config) => {
+	if (config.target === "web") {
+		var compiler = webpack(config);
+		app.use(require("webpack-dev-middleware")(compiler, { // eslint-disable-line no-undef
+			noInfo: true, publicPath: config.output.publicPath
+		}));
+		app.use(require("webpack-hot-middleware")(compiler));// eslint-disable-line no-undef
+	}
+});
 
 // Serving static files
 app.use("/dist", express.static(path.resolve(__dirname, "../dist")));
