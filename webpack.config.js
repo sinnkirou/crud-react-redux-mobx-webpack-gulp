@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const clientConfig = {
   mode: "development",
   entry: {
-    client: [path.join(src, 'client.js'), 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000']
+    client: ['react-hot-loader/patch', path.join(src, 'client.js'), 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000']
   },
   output: {
     path: __dirname,
