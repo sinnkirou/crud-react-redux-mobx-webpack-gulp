@@ -5,7 +5,7 @@ import http from "http";
 import logger from "morgan";
 import path from "path";
 import webpack from "webpack";
-import webpackConfig from "../webpack.config";
+import webpackConfig from "../webpack.dev.js";
 
 var debug = require("debug")("crud-react-redux:server"); // eslint-disable-line no-undef
 
@@ -15,16 +15,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Applying webpack hot middleware
-webpackConfig.map((config) => {
-	if (config.target === "web") {
-		var compiler = webpack(config);
-		app.use(require("webpack-dev-middleware")(compiler, { // eslint-disable-line no-undef
-			noInfo: true, publicPath: config.output.publicPath
-		}));
-		app.use(require("webpack-hot-middleware")(compiler));// eslint-disable-line no-undef
-	}
-});
+
+if (process.env.NODE_ENV !== "production") {// eslint-disable-line no-undef
+	// Applying webpack hot middleware
+	var compiler = webpack(webpackConfig);
+	app.use(require("webpack-dev-middleware")(compiler, { // eslint-disable-line no-undef
+		noInfo: true, publicPath: webpackConfig.output.publicPath
+	}));
+	app.use(require("webpack-hot-middleware")(compiler));// eslint-disable-line no-undef
+}
 
 // Serving static files
 app.use("/dist", express.static(path.resolve(__dirname, "../dist")));
