@@ -1,6 +1,6 @@
 const path = require("path");
 const src = path.join(__dirname, "src");
-
+const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const common = require("./webpack.common.js");
@@ -13,6 +13,7 @@ module.exports = merge(common, {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoEmitOnErrorsPlugin()
+		new webpack.NoEmitOnErrorsPlugin(),
+		new OpenBrowserPlugin({ url: "http://localhost:3000" })
 	]
 });

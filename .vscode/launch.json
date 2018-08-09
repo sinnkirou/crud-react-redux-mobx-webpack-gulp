@@ -32,9 +32,9 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/node_modules/react-scripts/bin/react-scripts",
+            "program": "${workspaceFolder}/node_modules/babel-cli/bin/babel-node",
             "args": [
-                "start"
+                "src/index.js"
             ]
         }
     ]
