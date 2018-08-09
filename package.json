@@ -45,6 +45,7 @@
     "jsdom-global": "3.0.2",
     "mocha": "^5.2.0",
     "morgan": "~1.9.0",
+    "nodemon": "^1.18.3",
     "nyc": "^12.0.2",
     "open-browser-webpack-plugin": "0.0.5",
     "pug": "^2.0.0-beta11",
@@ -59,7 +60,7 @@
     "webpack-merge": "^4.1.4"
   },
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "nodemon --exec babel-node src/index.js",
     "build": "webpack --config webpack.prod.js",
     "debug": "set DEBUG=crud-react-redux:* && npm start",
     "eslint": "eslint src test --ext js,jsx",
