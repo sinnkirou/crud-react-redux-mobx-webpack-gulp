@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import React from "react";
 import { PostForm } from "../../src/Containers/PostForm";
 
+// Testing with unconnected component.
 describe("PostForm component testing", function () {
 
 	const getDefaualtProps = () => ({

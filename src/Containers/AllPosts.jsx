@@ -5,7 +5,7 @@ import EditablePost from "../Components/EditablePost";
 import { deletePost, editPost, updatePost } from "../Actions";
 import PropTypes from "prop-types";
 
-export class AllPosts extends Component {
+class AllPosts extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { id: "" };

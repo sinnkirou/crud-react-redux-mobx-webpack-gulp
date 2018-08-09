@@ -19,6 +19,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.nyc_output/9f7776ceff02fbbfc7a6dd9080895a85.json
-.nyc_output/c502be19ebf23fc65d79cc437152820d.json
 dist/
+.nyc_output/

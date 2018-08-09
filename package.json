@@ -8,12 +8,6 @@
       "react",
       "stage-2"
     ],
-    "plugins": [
-      "transform-class-properties",
-      "transform-object-rest-spread",
-      "react-hot-loader/babel"
-    ],
-    "sourceMaps": "inline",
     "retainLines": true
   },
   "dependencies": {
@@ -55,6 +49,7 @@
     "pug": "^2.0.0-beta11",
     "react-hot-loader": "^4.3.3",
     "react-test-renderer": "^16.4.1",
+    "redux-mock-store": "^1.5.3",
     "style-loader": "^0.21.0",
     "webpack": "^4.14.0",
     "webpack-cli": "^3.0.8",
