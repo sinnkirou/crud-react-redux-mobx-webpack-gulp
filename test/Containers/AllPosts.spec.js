@@ -112,4 +112,31 @@ describe("AllPosts component testing", function () {
 			expect(this.searchBox).to.have.lengthOf(0);
 		});
 	});
+
+	context("mapDispatchToProps", () => {
+		beforeEach(() => {
+			const initialState = [];
+			this.store = mockStore({postReducer: initialState});
+			this.renderedComponent = shallow(<AllPosts store={this.store} />).dive();
+			this.searchBox = this.renderedComponent.find("input");
+		});
+
+		it("editPost shoule work", () => {
+			this.renderedComponent.instance().props.editPost({id: "1"});
+			const actions = this.store.getActions();
+			expect(actions[0].type).to.equal("EDIT_POST");
+		});
+		
+		it("deletePost shoule work", () => {
+			this.renderedComponent.instance().props.deletePost({id: "1"});
+			const actions = this.store.getActions();
+			expect(actions[0].type).to.equal("DELETE_POST");
+		});
+
+		it("updatePost shoule work", () => {
+			this.renderedComponent.instance().props.updatePost({id: "1", data: {}});
+			const actions = this.store.getActions();
+			expect(actions[0].type).to.equal("UPDATE_POST");
+		});
+	});
 });

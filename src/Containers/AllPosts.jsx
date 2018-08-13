@@ -57,7 +57,9 @@ class AllPosts extends Component {
 						/>
 					</div>
 				) : (
-					""
+					<div className="navbar">
+						<h1 className="post_heading">Please create a post first</h1>
+					</div>
 				)}
 				<br/>
 				{this.getPosts()}

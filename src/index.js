@@ -34,7 +34,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
-	res.render("index", { title: "Client Rendered page" });
+	res.render("index", { title: "Post a post" });
 });
 
 // stop server during local development
@@ -69,7 +69,7 @@ app.disable("x-powered-by");
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || "3000");// eslint-disable-line no-undef
+var port = normalizePort(process.env.PORT || "3005");// eslint-disable-line no-undef
 app.set("port", port);
 
 /**

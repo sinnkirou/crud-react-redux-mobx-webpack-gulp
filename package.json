@@ -10,6 +10,10 @@
     ],
     "retainLines": true
   },
+  "nodemonConfig": {
+    "ignore": ["test/*"],
+    "delay": "1000"
+  },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.10",
@@ -50,6 +54,7 @@
     "open-browser-webpack-plugin": "0.0.5",
     "pug": "^2.0.0-beta11",
     "react-hot-loader": "^4.3.3",
+    "react-router-dom": "^4.3.1",
     "react-test-renderer": "^16.4.1",
     "redux-mock-store": "^1.5.3",
     "style-loader": "^0.21.0",

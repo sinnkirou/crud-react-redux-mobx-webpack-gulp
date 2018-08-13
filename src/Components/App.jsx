@@ -1,17 +1,26 @@
-import React, { Component } from "react";
-import PostForm from "../Containers/PostForm";
-import AllPosts from "../Containers/AllPosts";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import routes from "./routes";
 
-class App extends Component {
-	render() {
-		return <div className="App" key="App">
-			<div className="navbar">
-				<h2 className="center ">Post It</h2>
-			</div>
-			<PostForm />
-			<AllPosts />
-		</div>;
-	}
-}
+const App = () => (
+	<Router>
+		<div className="App" key="App">
+			<ul>
+				<li>
+					<Link to="/">Home</Link>
+				</li>
+				<li>
+					<Link to="/posts">Posts</Link>
+				</li>
+			</ul>
+			<hr />
+			<Switch>
+				{routes.map(route => (
+					<Route {...route} key="Route" />
+				))}
+			</Switch>
+		</div>
+	</Router>
+);
 
 export default App;

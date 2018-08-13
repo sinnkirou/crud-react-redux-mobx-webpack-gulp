@@ -14,6 +14,6 @@ module.exports = merge(common, {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
-		new OpenBrowserPlugin({ url: "http://localhost:3000" })
+		new OpenBrowserPlugin({ url: "http://localhost:3000" , delay: 1000})
 	]
 });
