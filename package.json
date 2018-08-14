@@ -11,7 +11,9 @@
     "retainLines": true
   },
   "nodemonConfig": {
-    "ignore": ["test/*"],
+    "ignore": [
+      "test/*", "node_modules/*", "dist/*", "coverage/*"
+    ],
     "delay": "1000"
   },
   "dependencies": {

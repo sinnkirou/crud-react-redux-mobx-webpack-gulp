@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import routes from "./routes";
+import { BrowserRouter, Link } from "react-router-dom";
+import Router from "./Router";
 
 const App = () => (
-	<Router>
+	<BrowserRouter>
 		<div className="App" key="App">
 			<ul>
 				<li>
@@ -13,14 +13,9 @@ const App = () => (
 					<Link to="/posts">Posts</Link>
 				</li>
 			</ul>
-			<hr />
-			<Switch>
-				{routes.map(route => (
-					<Route {...route} key="Route" />
-				))}
-			</Switch>
+			<Router />
 		</div>
-	</Router>
+	</BrowserRouter>
 );
 
 export default App;

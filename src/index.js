@@ -69,7 +69,7 @@ app.disable("x-powered-by");
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || "3005");// eslint-disable-line no-undef
+var port = normalizePort(process.env.PORT || "3000");// eslint-disable-line no-undef
 app.set("port", port);
 
 /**
