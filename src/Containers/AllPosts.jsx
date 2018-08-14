@@ -48,17 +48,23 @@ class AllPosts extends Component {
 				{this.props.posts && this.props.posts.length > 0 ? (
 					<div className="allPosts">
 						<h1 className="post_heading">All Posts</h1>
-						<input
-							required
-							type="text"
-							placeholder="Enter post ID to search"
-							value={this.state.id}
-							onChange={this.onChangeHandle}
-						/>
+						<div className="mdl-textfield mdl-js-textfield ">
+							<label className="mdl-button mdl-js-button mdl-button--icon">
+								<i className="material-icons">search</i>
+							</label>	
+							<input 
+								className="mdl-textfield__input" 
+								type="text" 
+								required
+								placeholder="Enter post ID to search"
+								value={this.state.id}
+								onChange={this.onChangeHandle} 
+							/>	
+						</div>
 					</div>
 				) : (
 					<div className="navbar">
-						<h1 className="post_heading">Please create a post first</h1>
+						<h2 className="center ">Please create a post first</h2>
 					</div>
 				)}
 				<br/>

@@ -46,7 +46,9 @@ class EditablePost extends Component {
 					/>
 					<br />
 					<br />
-					<button>{this.props.editing ? "Update" : "Submit"}</button>
+					<button className="mdl-button mdl-js-button mdl-button--raised">
+						{this.props.editing ? "Update" : "Submit"}
+					</button>
 				</form>
 			</div>
 		);

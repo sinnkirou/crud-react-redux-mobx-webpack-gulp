@@ -8,6 +8,7 @@ body {
 .center {
   text-align: center;
 }
+
 a {
   color: #636363;
   text-decoration: none;
@@ -112,7 +113,7 @@ a:hover {
 
 .form button {
   background: #02b3e4;
-  padding: 15px 40px;
+  height: 2em;
   text-align: center;
   color: #fff;
   font-family: "Work Sans", sans-serif;
@@ -162,6 +163,10 @@ a:hover {
   color: #fff;
 }
 
+.delete:hover {
+  background: lightgray;
+}
+
 .edit {
   background: #02b3e4;
   border: none;
@@ -175,6 +180,10 @@ a:hover {
   color: #fff;
 }
 
+.edit:hover {
+  background: lightgray;
+}
+
 .allPosts{
   display: flex;
   flex-direction: column;
@@ -183,17 +192,9 @@ a:hover {
 }
 
 .allPosts input {
-  height: 44px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border: 1px solid #dbe2e8;
-  font-size: 14px;
-  border-radius: 2px;
-  color: #636363;
-  box-shadow: 0 2px 2px 0 rgba(46, 60, 73, 0.05);
-  outline: none;
   text-align: center;
-  width: 80%;
 }
 
-
+li a {
+  color: #000;
+}
