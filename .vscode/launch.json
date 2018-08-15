@@ -26,7 +26,10 @@
             "runtimeArgs": [
                 "--nolazy"
             ],
-            "sourceMaps": true
+            "sourceMaps": true,
+            "env": {
+                "NODE_ENV": "test"
+            }
         },
         {
             "type": "node",

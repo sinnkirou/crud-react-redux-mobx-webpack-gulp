@@ -1,10 +1,12 @@
 const path = require("path");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const clientConfig = {
 	output: {
 		path: path.join(__dirname, "dist"),
-		filename: "[name].js",
+		filename: "[name].bundle.js",
 		publicPath: "/dist/",
+		chunkFilename: "[name].bundle.js",
 	},
 	target: "web",
 	resolve: {
@@ -33,7 +35,10 @@ const clientConfig = {
 				use: ["style-loader", "css-loader"],
 			}
 		]
-	}
+	},
+	plugins: [
+		new CleanWebpackPlugin(["dist"])
+	]
 };
 
 module.exports = clientConfig;
