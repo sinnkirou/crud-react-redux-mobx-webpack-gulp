@@ -42,6 +42,7 @@
     "delay": "1000"
   },
   "dependencies": {
+    "history": "^4.7.2",
     "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -63,6 +64,7 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
+    "connected-react-router": "^4.4.1",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",

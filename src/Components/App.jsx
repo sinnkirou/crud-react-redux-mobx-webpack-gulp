@@ -1,9 +1,11 @@
 import React from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
 import Router from "./Router";
+import PropTypes from "prop-types";
 
-const App = () => (
-	<BrowserRouter>
+const App = ({ history }) => (
+	<ConnectedRouter history={history}>
 		<div className="App" key="App">
 			<button id="demo-menu-lower-left" className="mdl-button mdl-js-button mdl-button--icon">
 				<i className="material-icons">more_vert</i>
@@ -16,9 +18,13 @@ const App = () => (
 					<Link to="/posts">Posts</Link>
 				</li>
 			</ul>
-			<Router />
+			<Router key={Math.random()} />
 		</div>
-	</BrowserRouter>
+	</ConnectedRouter>
 );
 
 export default App;
+
+App.propTypes = {
+	history: PropTypes.object.isRequired,
+};
