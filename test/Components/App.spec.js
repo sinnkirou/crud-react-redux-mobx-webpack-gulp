@@ -5,7 +5,7 @@ import App from "../../src/Components/App";
 
 describe("App component testing", function () {
 	beforeEach(() => {
-		this.renderedComponent = shallow(<App />);
+		this.renderedComponent = shallow(<App history= {{}} />);
 	});
 
 	it("should render", () => {

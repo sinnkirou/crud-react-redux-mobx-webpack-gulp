@@ -3,12 +3,12 @@ import { Switch, Route } from "react-router-dom";
 import Loadable from "react-loadable";
 import Loading from "./Loading";
 
-const PostForm = Loadable({
+export const PostForm = Loadable({
 	loader: () => import(/* webpackChunkName: "postForm" */ "../Containers/PostForm"),
 	loading: Loading,
 });
 
-const AllPosts = Loadable({
+export const AllPosts = Loadable({
 	loader: () => import(/* webpackChunkName: "allPosts" */ "../Containers/AllPosts"),
 	loading: Loading,
 });

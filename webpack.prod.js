@@ -7,6 +7,6 @@ module.exports = merge(common, {
 	mode: "production",
 	devtool: "source-map",
 	entry: {
-		client: [path.join(src, "client.js")]
+		client: ["babel-polyfill", path.join(src, "client.js")]
 	}
 });
