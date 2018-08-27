@@ -65,6 +65,7 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
+    "compression": "^1.7.3",
     "connected-react-router": "^4.4.1",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",

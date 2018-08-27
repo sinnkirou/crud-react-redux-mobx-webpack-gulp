@@ -6,6 +6,7 @@ import logger from "morgan";
 import path from "path";
 import webpack from "webpack";
 import webpackConfig from "../webpack.dev.js";
+import compression from "compression";
 
 var debug = require("debug")("crud-react-redux:server"); // eslint-disable-line no-undef
 
@@ -14,7 +15,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(compression());
 
 if (process.env.NODE_ENV !== "production") {// eslint-disable-line no-undef
 	// Applying webpack hot middleware
