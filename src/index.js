@@ -7,6 +7,7 @@ import path from "path";
 import webpack from "webpack";
 import webpackConfig from "../webpack.dev.js";
 import compression from "compression";
+import LogManager from "./Log/LogManager";
 
 var debug = require("debug")("crud-react-redux:server"); // eslint-disable-line no-undef
 
@@ -121,11 +122,11 @@ function onError(error) {
 	// handle specific listen errors with friendly messages
 	switch (error.code) {
 	case "EACCES":
-		console.error(bind + " requires elevated privileges"); // eslint-disable-line no-console
+		LogManager.getConsole().error(bind + " requires elevated privileges");
 		process.exit(1); // eslint-disable-line no-undef
 		break;
 	case "EADDRINUSE":
-		console.error(bind + " is already in use"); // eslint-disable-line no-console
+		LogManager.getConsole().error(bind + " is already in use");
 		process.exit(1); // eslint-disable-line no-undef
 		break;
 	default:
