@@ -4,12 +4,10 @@ import express from "express";
 import http from "http";
 import logger from "morgan";
 import path from "path";
-import webpack from "webpack";
-import webpackConfig from "../webpack.dev.js";
 import compression from "compression";
 import LogManager from "./Log/LogManager";
 
-var debug = require("debug")("crud-react-redux:server"); // eslint-disable-line no-undef
+var debug = require("debug")("crud-react-redux:server"); 
 
 const app = express();
 app.use(logger("dev"));
@@ -20,11 +18,17 @@ app.use(compression());
 
 if (process.env.NODE_ENV !== "production") {// eslint-disable-line no-undef
 	// Applying webpack hot middleware
-	var compiler = webpack(webpackConfig);
-	app.use(require("webpack-dev-middleware")(compiler, { // eslint-disable-line no-undef
-		noInfo: true, publicPath: webpackConfig.output.publicPath
-	}));
-	app.use(require("webpack-hot-middleware")(compiler));// eslint-disable-line no-undef
+	const webpack = require("webpack");
+	const webpackConfig = require("../webpack.dev.js");
+	webpackConfig.forEach(config => {
+		if (config.target === "web"){
+			var compiler = webpack(config);
+			app.use(require("webpack-dev-middleware")(compiler, { 
+				noInfo: true, publicPath: config.output.publicPath
+			}));
+			app.use(require("webpack-hot-middleware")(compiler));
+		}
+	});
 }
 
 // Serving static files
@@ -71,7 +75,7 @@ app.disable("x-powered-by");
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || "3000");// eslint-disable-line no-undef
+var port = normalizePort(process.env.PORT || "8080");// eslint-disable-line no-undef
 app.set("port", port);
 
 /**
