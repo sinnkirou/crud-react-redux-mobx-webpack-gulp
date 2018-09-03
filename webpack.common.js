@@ -4,7 +4,7 @@ const nodeExternals = require("webpack-node-externals");
 
 const clientConfig = {
 	output: {
-		path: path.join(__dirname, "dist"),
+		path: path.resolve(__dirname, "dist"),
 		filename: "[name].bundle.js",
 		publicPath: "/dist/",
 		chunkFilename: "[name].bundle.js",

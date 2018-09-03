@@ -32,15 +32,6 @@
       }
     }
   },
-  "nodemonConfig": {
-    "ignore": [
-      "test/*",
-      "node_modules/*",
-      "dist/*",
-      "coverage/*"
-    ],
-    "delay": "1000"
-  },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "history": "^4.7.2",
@@ -83,7 +74,7 @@
     "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "morgan": "~1.9.0",
-    "nodemon": "^1.18.3",
+    "nodemon-webpack-plugin": "^4.0.3",
     "nyc": "^12.0.2",
     "pug": "^2.0.0-beta11",
     "raf": "^3.4.0",
@@ -103,7 +94,7 @@
     "winston": "^3.0.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "webpack --watch --config webpack.dev.js --trace-sync-io",
     "build": "webpack --config webpack.prod.js",
     "debug": "set DEBUG=crud-react-redux:* && npm start",
     "eslint": "eslint src test --ext js,jsx",
