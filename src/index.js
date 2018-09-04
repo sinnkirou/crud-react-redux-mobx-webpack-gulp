@@ -2,7 +2,6 @@ import cookieParser from "cookie-parser";
 import createError from "http-errors";
 import express from "express";
 import http from "http";
-import logger from "morgan";
 import path from "path";
 import compression from "compression";
 import LogManager from "./Log/LogManager";
@@ -10,7 +9,6 @@ import LogManager from "./Log/LogManager";
 var debug = require("debug")("crud-react-redux:server"); 
 
 const app = express();
-app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
