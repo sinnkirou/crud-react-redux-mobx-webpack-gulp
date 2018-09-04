@@ -8,7 +8,7 @@ const production = {
 		mode: "production",
 		devtool: "source-map",
 		entry: {
-			client: ["babel-polyfill", path.join(src, "client.js")]
+			client: [ path.join(src, "client.js")]
 		}
 	},
 	serverConfig: {

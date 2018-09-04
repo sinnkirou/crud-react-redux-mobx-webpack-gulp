@@ -39,7 +39,18 @@ const clientConfig = {
 	},
 	plugins: [
 		new CleanWebpackPlugin(["dist"])
-	]
+	],
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					test: /[\\/]node_modules[\\/]/,
+					name: "vendor",
+					chunks: "all"
+				}
+			}
+		}
+	}
 };
 
 const serverConfig = {
