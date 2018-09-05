@@ -1,12 +1,13 @@
 const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const clientConfig = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].bundle.js",
-		publicPath: "/dist/",
+		publicPath: "/",
 		chunkFilename: "[name].bundle.js",
 	},
 	target: "web",
@@ -38,7 +39,11 @@ const clientConfig = {
 		]
 	},
 	plugins: [
-		new CleanWebpackPlugin(["dist"])
+		new CleanWebpackPlugin(["dist"]),
+		new CopyWebpackPlugin([
+			{ from: path.resolve(__dirname, "src/public") , to: path.resolve(__dirname, "dist/public") },
+			{ from: path.resolve(__dirname, "src/views") , to: path.resolve(__dirname, "dist/views") }
+		])
 	],
 	optimization: {
 		splitChunks: {

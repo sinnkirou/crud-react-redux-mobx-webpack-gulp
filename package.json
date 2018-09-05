@@ -63,6 +63,7 @@
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "compression": "^1.7.3",
+    "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "debug": "~2.6.9",

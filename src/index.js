@@ -30,11 +30,11 @@ if (process.env.NODE_ENV !== "production") {// eslint-disable-line no-undef
 }
 
 // Serving static files
-app.use("/dist", express.static(path.resolve(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "../dist")));
 app.use(express.static(path.join(__dirname, "public")));
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "../dist/views"));
 app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
