@@ -1,5 +1,6 @@
 {
   "name": "crud-react-redux",
+  "sideEffects": false,
   "version": "0.1.0",
   "private": true,
   "babel": {

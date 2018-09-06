@@ -54,7 +54,8 @@ const clientConfig = {
 					chunks: "all"
 				}
 			}
-		}
+		},
+		runtimeChunk: "single"
 	}
 };
 
