@@ -41,6 +41,16 @@
                 "--presets",
                 "env"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Production Build",
+            "program": "${workspaceFolder}/node_modules/webpack/bin/webpack",
+            "args": [
+                "--config",
+                "webpack.prod.js",
+            ]
         }
     ]
 }

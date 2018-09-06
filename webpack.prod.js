@@ -7,10 +7,16 @@ const webpack = require("webpack");
 const production = {
 	clientConfig: {
 		mode: "production",
-		devtool: "source-map",
 		entry: {
 			client: [ path.join(src, "client.js")]
 		},
+		output: {
+			path: path.resolve(__dirname, "dist"),
+			filename: "[name].[contenthash].js",
+			publicPath: "/",
+			chunkFilename: "[name].[contenthash].js",
+		},
+		devtool: "source-map",
 		plugins: [
 			new webpack.HashedModuleIdsPlugin()
 		]

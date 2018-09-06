@@ -8,10 +8,16 @@ const NodemonPlugin = require( "nodemon-webpack-plugin" );
 const development = {
 	clientConfig: {
 		mode: "development",
-		devtool: "inline-source-map",
 		entry: {
 			client: ["react-hot-loader/patch", path.resolve(src, "client.js"), "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000"]
 		},
+		output: {
+			path: path.resolve(__dirname, "dist"),
+			filename: "[name].[hash].js",
+			publicPath: "/",
+			chunkFilename: "[name].[hash].js",
+		},
+		devtool: "inline-source-map",
 		plugins: [
 			new webpack.HotModuleReplacementPlugin(),
 			new webpack.NoEmitOnErrorsPlugin(),

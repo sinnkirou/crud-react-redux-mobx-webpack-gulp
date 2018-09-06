@@ -2,14 +2,9 @@ const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const WebpackPugManifestPlugin = require("./src/Utilities/WebpackPugManifestPlugin");
 
 const clientConfig = {
-	output: {
-		path: path.resolve(__dirname, "dist"),
-		filename: "[name].bundle.js",
-		publicPath: "/",
-		chunkFilename: "[name].bundle.js",
-	},
 	target: "web",
 	resolve: {
 		extensions: [".js", ".jsx"]
@@ -43,7 +38,13 @@ const clientConfig = {
 		new CopyWebpackPlugin([
 			{ from: path.resolve(__dirname, "src/public") , to: path.resolve(__dirname, "dist/public") },
 			{ from: path.resolve(__dirname, "src/views") , to: path.resolve(__dirname, "dist/views") }
-		])
+		]),
+		new WebpackPugManifestPlugin({
+			filter: (asset) => (
+				/(vendor|runtime|client).+js$/.test(asset)
+			),
+			filename: "views/manifest.pug"
+		})
 	],
 	optimization: {
 		splitChunks: {
