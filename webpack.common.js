@@ -13,7 +13,7 @@ const clientConfig = {
 		rules: [
 			{
 				test: /\.js|jsx$/,
-				exclude: /node_modules/,
+				include: path.resolve(__dirname, "src"),
 				loader: "babel-loader",
 				options: {
 					"plugins": [
