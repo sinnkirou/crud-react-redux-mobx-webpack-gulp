@@ -1,7 +1,7 @@
 import { addPost, deletePost, updatePost, editPost } from "../../src/Actions";
 import { expect } from "chai";
 
-describe("actions testing", function () {
+describe("actions testing", () => {
 	it("can call addPost", () => {
 		expect(
 			JSON.stringify(addPost({ message: "message", title: "title" }))
