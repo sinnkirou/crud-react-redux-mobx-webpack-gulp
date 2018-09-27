@@ -4,7 +4,7 @@ import React from "react";
 import { PostForm, mapDispatchToProps } from "../../src/Containers/PostForm";
 
 // Testing with unconnected component.
-describe("PostForm component testing", function () {
+describe("PostForm component testing", () => {
 
 	const getDefaualtProps = () => ({
 		addPost: () => { }
@@ -12,11 +12,11 @@ describe("PostForm component testing", function () {
 
 	it("should render", () => {
 		const props = getDefaualtProps();
-		this.renderedComponent = shallow(<PostForm {...props} />);
-		expect(this.renderedComponent).to.have.lengthOf(1);
-		const post_heading = this.renderedComponent.find("h1.post_heading");
+		const renderedComponent = shallow(<PostForm {...props} />);
+		expect(renderedComponent).to.have.lengthOf(1);
+		const post_heading = renderedComponent.find("h1.post_heading");
 		expect(post_heading).to.have.lengthOf(1);
-		const editablePost = this.renderedComponent.find("EditablePost");
+		const editablePost = renderedComponent.find("EditablePost");
 		expect(editablePost).to.have.lengthOf(1);
 	});
 

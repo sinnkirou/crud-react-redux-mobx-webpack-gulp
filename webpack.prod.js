@@ -13,7 +13,7 @@ const production = {
 		output: {
 			path: path.resolve(__dirname, "dist"),
 			filename: "[name].[contenthash].js",
-			publicPath: "/",
+			publicPath: "./",
 			chunkFilename: "[name].[contenthash].js",
 		},
 		devtool: "source-map",

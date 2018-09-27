@@ -14,7 +14,7 @@ const development = {
 		output: {
 			path: path.resolve(__dirname, "dist"),
 			filename: "[name].[hash].js",
-			publicPath: "/",
+			publicPath: "./",
 			chunkFilename: "[name].[hash].js",
 		},
 		devtool: "inline-source-map",

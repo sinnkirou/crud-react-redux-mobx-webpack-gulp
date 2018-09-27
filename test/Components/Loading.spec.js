@@ -3,11 +3,11 @@ import { shallow } from "enzyme";
 import React from "react";
 import Loading from "../../src/Components/Loading";
 
-describe("Loading component", function () {
+describe("Loading component", () => {
 	it("should render", () => {
-		this.renderedComponent = shallow(<Loading />);
-		expect(this.renderedComponent).to.have.lengthOf(1);
-		const spinner = this.renderedComponent.find(".mdl-spinner");
+		const renderedComponent = shallow(<Loading />);
+		expect(renderedComponent).to.have.lengthOf(1);
+		const spinner = renderedComponent.find(".mdl-spinner");
 		expect(spinner).to.have.lengthOf(1);
 	});
 });

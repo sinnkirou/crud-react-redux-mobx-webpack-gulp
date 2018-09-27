@@ -3,14 +3,16 @@ import { shallow } from "enzyme";
 import React from "react";
 import App from "../../src/Components/App";
 
-describe("App component testing", function () {
+describe("App component testing", () => {
+	let renderedComponent;
+	
 	beforeEach(() => {
-		this.renderedComponent = shallow(<App history= {{}} />);
+		renderedComponent = shallow(<App history= {{}} />);
 	});
 
 	it("should render", () => {
-		expect(this.renderedComponent).to.have.lengthOf(1);
-		const links = this.renderedComponent.find("Link");
+		expect(renderedComponent).to.have.lengthOf(1);
+		const links = renderedComponent.find("Link");
 		expect(links).to.have.lengthOf(2);
 	});
 });

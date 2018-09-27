@@ -63,7 +63,8 @@ const clientConfig = {
 const serverConfig = {
 	target: "node",
 	node: {
-		__dirname: true
+		__dirname: true,
+		__filename: true,
 	},
 	plugins: [
 		new CleanWebpackPlugin(["dist"])

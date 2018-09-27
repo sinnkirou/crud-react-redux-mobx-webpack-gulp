@@ -9,54 +9,57 @@ import sinon from "sinon";
 import PostForm from "../../src/Containers/PostForm";
 import AllPosts from "../../src/Containers/AllPosts";
 
-describe("routes", function () {
+describe("routes", () => {
+	let renderedComponent;
+	const mockStore = configureStore();
+	const store = mockStore({ postReducer: [] });
+	let sandbox;
+
 	beforeEach(() => {
-		const mockStore = configureStore();
-		this.store = mockStore({ postReducer: [] });
-		this.sandbox = sinon.createSandbox();
+		sandbox = sinon.createSandbox();
 	});
     
 	afterEach(() => {
-		this.renderedComponent.unmount();
-		this.sandbox.restore();
+		renderedComponent.unmount();
+		sandbox.restore();
 	});
 
 	it("should render loading", () => {
-		this.renderedComponent = mount(
-			<Provider store={this.store}>
+		renderedComponent = mount(
+			<Provider store={store}>
 				<MemoryRouter>
 					<App />
 				</MemoryRouter>
 			</Provider>
 		);
-		const postForm = this.renderedComponent.find("Loading");
+		const postForm = renderedComponent.find("Loading");
 		expect(postForm).to.have.lengthOf(1);
 	});
 
 
 	it("should render postform", () => {
-		this.sandbox.stub(LoadablePostForm.prototype, "render").callsFake(()=>(<PostForm/>));
-		this.renderedComponent = mount(
-			<Provider store={this.store}>
+		sandbox.stub(LoadablePostForm.prototype, "render").callsFake(()=>(<PostForm/>));
+		renderedComponent = mount(
+			<Provider store={store}>
 				<MemoryRouter>
 					<App />
 				</MemoryRouter>
 			</Provider>
 		);
-		const postForm = this.renderedComponent.find("PostForm");
+		const postForm = renderedComponent.find("PostForm");
 		expect(postForm).to.have.lengthOf(1);
 	});
 
 	it("should render AllPosts", () => {
-		this.sandbox.stub(LoadableAllPosts.prototype, "render").callsFake(()=>(<AllPosts/>));
-		this.renderedComponent = mount(
-			<Provider store={this.store}>
+		sandbox.stub(LoadableAllPosts.prototype, "render").callsFake(()=>(<AllPosts/>));
+		renderedComponent = mount(
+			<Provider store={store}>
 				<MemoryRouter initialEntries={["/posts"]}>
 					<App />
 				</MemoryRouter>
 			</Provider>
 		);
-		const allPosts = this.renderedComponent.find("AllPosts");
+		const allPosts = renderedComponent.find("AllPosts");
 		expect(allPosts).to.have.lengthOf(1);
 	});
 });

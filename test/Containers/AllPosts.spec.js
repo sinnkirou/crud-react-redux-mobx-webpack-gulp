@@ -5,7 +5,7 @@ import AllPosts from "../../src/Containers/AllPosts";
 import configureStore from "redux-mock-store";
 
 // Testing with connected component.
-describe("AllPosts component testing", function () {
+describe("AllPosts component testing", () => {
 	const mockStore = configureStore();
 
 	it("should render viewable posts", () => {
@@ -25,9 +25,9 @@ describe("AllPosts component testing", function () {
 		];
 
 		const store = mockStore({postReducer: initialState});
-		this.renderedComponent = shallow(<AllPosts store={store} />).dive();
-		expect(this.renderedComponent).to.have.lengthOf(1);
-		const viewablePost = this.renderedComponent.find("ViewablePost");
+		const renderedComponent = shallow(<AllPosts store={store} />).dive();
+		expect(renderedComponent).to.have.lengthOf(1);
+		const viewablePost = renderedComponent.find("ViewablePost");
 		expect(viewablePost).to.have.lengthOf(2);
 	});
 
@@ -47,14 +47,17 @@ describe("AllPosts component testing", function () {
 			}
 		];
 		const store = mockStore({postReducer: initialState});
-		this.renderedComponent = shallow(<AllPosts store={store} />).dive();
-		expect(this.renderedComponent).to.have.lengthOf(1);
-		this.renderedComponent.setState({ id: 2 });
-		const editablePost = this.renderedComponent.find("EditablePost");
+		const renderedComponent = shallow(<AllPosts store={store} />).dive();
+		expect(renderedComponent).to.have.lengthOf(1);
+		renderedComponent.setState({ id: 2 });
+		const editablePost = renderedComponent.find("EditablePost");
 		expect(editablePost).to.have.lengthOf(1);
 	});
 
 	context("search box when posts exist", () => {
+		let renderedComponent;
+		let searchBox;
+
 		beforeEach(() => {
 			const initialState = [
 				{
@@ -65,77 +68,76 @@ describe("AllPosts component testing", function () {
 				}
 			];
 			const store = mockStore({postReducer: initialState});
-			this.renderedComponent = shallow(<AllPosts store={store} />).dive();
-			this.searchBox = this.renderedComponent.find("input");
+			renderedComponent = shallow(<AllPosts store={store} />).dive();
+			searchBox = renderedComponent.find("input");
 		});
+		
 
 		it("should render", () => {
-			expect(this.renderedComponent).to.have.lengthOf(1);
-			expect(this.searchBox).to.have.lengthOf(1);
+			expect(renderedComponent).to.have.lengthOf(1);
+			expect(searchBox).to.have.lengthOf(1);
 		});
 
 		it("should display at least one post when search successfully", () => {
-			expect(this.renderedComponent.instance().state.id).to.equal("");
-			this.searchBox.simulate("change", {
+			expect(renderedComponent.instance().state.id).to.equal("");
+			searchBox.simulate("change", {
 				target:
 					{ value: "1" },
 				preventDefault() { }
 			});
-			expect(this.renderedComponent.instance().state.id).to.equal("1");
-			const viewablePost = this.renderedComponent.find("ViewablePost");
+			expect(renderedComponent.instance().state.id).to.equal("1");
+			const viewablePost = renderedComponent.find("ViewablePost");
 			expect(viewablePost).to.have.lengthOf(1);
 		});
 
 		it("should display none when search failed", () => {
-			expect(this.renderedComponent.instance().state.id).to.equal("");
-			this.searchBox.simulate("change", {
+			expect(renderedComponent.instance().state.id).to.equal("");
+			searchBox.simulate("change", {
 				target:
 					{ value: "2" },
 				preventDefault() { }
 			});
-			expect(this.renderedComponent.instance().state.id).to.equal("2");
-			const viewablePost = this.renderedComponent.find("ViewablePost");
+			expect(renderedComponent.instance().state.id).to.equal("2");
+			const viewablePost = renderedComponent.find("ViewablePost");
 			expect(viewablePost).to.have.lengthOf(0);
 		});
 	});
 
 	context("search box when no posts", () => {
-		beforeEach(() => {
-			const initialState = [];
-			const store = mockStore({postReducer: initialState});
-			this.renderedComponent = shallow(<AllPosts store={store} />).dive();
-			this.searchBox = this.renderedComponent.find("input");
-		});
+		const initialState = [];
+		const store = mockStore({postReducer: initialState});
+		const renderedComponent = shallow(<AllPosts store={store} />).dive();
+		const searchBox = renderedComponent.find("input");
 
 		it("should not render", () => {
-			this.searchBox = this.renderedComponent.find("input");
-			expect(this.searchBox).to.have.lengthOf(0);
+			expect(searchBox).to.have.lengthOf(0);
 		});
 	});
 
 	context("mapDispatchToProps", () => {
+		let renderedComponent;
+		let store;
+
 		beforeEach(() => {
-			const initialState = [];
-			this.store = mockStore({postReducer: initialState});
-			this.renderedComponent = shallow(<AllPosts store={this.store} />).dive();
-			this.searchBox = this.renderedComponent.find("input");
+			store = mockStore({postReducer: []});
+			renderedComponent = shallow(<AllPosts store={store} />).dive();
 		});
 
 		it("editPost shoule work", () => {
-			this.renderedComponent.instance().props.editPost({id: "1"});
-			const actions = this.store.getActions();
+			renderedComponent.instance().props.editPost({id: "1"});
+			const actions = store.getActions();
 			expect(actions[0].type).to.equal("EDIT_POST");
 		});
 		
 		it("deletePost shoule work", () => {
-			this.renderedComponent.instance().props.deletePost({id: "1"});
-			const actions = this.store.getActions();
+			renderedComponent.instance().props.deletePost({id: "1"});
+			const actions = store.getActions();
 			expect(actions[0].type).to.equal("DELETE_POST");
 		});
 
 		it("updatePost shoule work", () => {
-			this.renderedComponent.instance().props.updatePost({id: "1", data: {}});
-			const actions = this.store.getActions();
+			renderedComponent.instance().props.updatePost({id: "1", data: {}});
+			const actions = store.getActions();
 			expect(actions[0].type).to.equal("UPDATE_POST");
 		});
 	});
