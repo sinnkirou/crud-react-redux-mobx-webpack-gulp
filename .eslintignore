@@ -1,4 +1,1 @@
-bin/*
-build/*
-webpack.config.js
 src/public/*
