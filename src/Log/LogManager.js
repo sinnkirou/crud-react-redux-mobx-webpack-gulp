@@ -1,43 +1,43 @@
-import winston from "winston";
-import Logger from "./Logger";
+import winston from 'winston';
+import Logger from './Logger';
+
+function initFileLogger() {
+  return winston.createLogger({
+    levels: winston.config.syslog.levels,
+    transports: [
+      new winston.transports.File({
+        filename: 'crud.log',
+        maxsize: 2097152,
+        maxFiles: 10,
+        timestamp: true,
+        zippedArchive: true,
+        label: 'CRUD'
+      })
+    ]
+  });
+}
+
+function initConsoleLogger() {
+  return winston.createLogger({
+    levels: winston.config.syslog.levels,
+    transports: [new winston.transports.Console()]
+  });
+}
 
 class LogManager {
-	constructor() {
-		this._logger = new Logger(this._initFileLogger());
+  constructor() {
+    this.logger = new Logger(initFileLogger());
 
-		this._console = new Logger(this._initConsoleLogger());
-	}
+    this.console = new Logger(initConsoleLogger());
+  }
 
-	_initFileLogger() {
-		return winston.createLogger({
-			levels: winston.config.syslog.levels,
-			transports: [
-				new winston.transports.File({
-					filename: "crud.log",
-					maxsize: 2097152,
-					maxFiles: 10,
-					timestamp: true,
-					zippedArchive: true,
-					label: "CRUD"
-				})
-			]
-		});
-	}
+  getLogger() {
+    return this.logger;
+  }
 
-	_initConsoleLogger() {
-		return winston.createLogger({
-			levels: winston.config.syslog.levels,
-			transports: [new winston.transports.Console()]
-		});
-	}
-
-	getLogger() {
-		return this._logger;
-	}
-
-	getConsole() {
-		return this._console;
-	}
+  getConsole() {
+    return this.console;
+  }
 }
 
 const manager = new LogManager();

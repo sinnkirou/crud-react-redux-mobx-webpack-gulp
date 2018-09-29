@@ -1,45 +1,43 @@
 function WebpackPugManifestPlugin(options) {
-	this.filter = options.filter;
-	this.sort = options.sort;
-	this.filename = options.filename;
+  this.filter = options.filter;
+  this.sort = options.sort;
+  this.filename = options.filename;
 }
 
+// eslint-disable-next-line func-names
 WebpackPugManifestPlugin.prototype.apply = function(compiler) {
-	var filter = this.filter;
-	var sort = this.sort;
-	var filename = this.filename;
+  const { filter, sort, filename } = this;
 
-	compiler.plugin("emit", function(compilation, callback) {
-		var assets = [];
-		for (var asset in compilation.assets) {
-			assets.push(asset);
-		}
+  compiler.plugin('emit', (compilation, callback) => {
+    let assets = [];
 
-		if (typeof filter === "function") {
-			assets = assets.filter(filter);
-		}
+    Object.keys(compilation.assets).forEach(key => {
+      assets.push(key);
+    });
 
-		if (typeof sort === "function") {
-			assets.sort(sort);
-		}
+    if (typeof filter === 'function') {
+      assets = assets.filter(filter);
+    }
 
-		compilation.assets[filename ? filename : "pug-manifest.pug"] = {
-			source: function() {
-				return assets.reduce(function(accumulation, asset) {
-					return (
-						accumulation +
-            "script(src='" +
-            asset +
-            "')\n"
-					);
-				}, "");
-			},
-			size: function() {
-				return assets.length;
-			}
-		};
-		callback();
-	});
+    if (typeof sort === 'function') {
+      assets.sort(sort);
+    }
+
+    // eslint-disable-next-line no-param-reassign
+    compilation.assets[filename || 'pug-manifest.pug'] = {
+      source() {
+        return assets.reduce(
+          (accumulation, asset) => `${accumulation}script(src='${asset}')\n`,
+          ''
+        );
+      },
+      size() {
+        return assets.length;
+      }
+    };
+
+    callback();
+  });
 };
 
 module.exports = WebpackPugManifestPlugin;
