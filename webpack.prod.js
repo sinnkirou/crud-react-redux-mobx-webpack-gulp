@@ -1,8 +1,8 @@
 const merge = require('webpack-merge');
 const path = require('path');
+const webpack = require('webpack');
 
 const src = path.join(__dirname, 'src');
-const webpack = require('webpack');
 const common = require('./webpack.common.js');
 
 const production = {
