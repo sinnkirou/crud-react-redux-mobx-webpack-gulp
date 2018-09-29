@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 class EditablePost extends Component {
   handleSubmit = e => {
@@ -26,7 +27,7 @@ class EditablePost extends Component {
     const { post, editing } = this.props;
 
     return (
-      <div key={`editablePost${post ? post.id : 'default'}`} className="post">
+      <div key={`editablePost${_.isEmpty(post) ? 'default' : post.id}`} className="post">
         <form className="form" onSubmit={this.handleSubmit}>
           <input
             required
@@ -34,7 +35,7 @@ class EditablePost extends Component {
             ref={input => {
               this.getTitle = input;
             }}
-            defaultValue={post ? post.title : ''}
+            defaultValue={_.isEmpty(post) ? post.title : ''}
             placeholder="Enter Post Title"
           />
           <br />
@@ -45,7 +46,7 @@ class EditablePost extends Component {
             ref={input => {
               this.getMessage = input;
             }}
-            defaultValue={post ? post.message : ''}
+            defaultValue={_.isEmpty(post) ? post.message : ''}
             cols="28"
             placeholder="Enter Post"
           />
@@ -68,13 +69,11 @@ EditablePost.propTypes = {
     message: PropTypes.string
   }),
   editing: PropTypes.bool.isRequired,
-  updatePost: PropTypes.func,
-  addPost: PropTypes.func
+  updatePost: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired
 };
 
 EditablePost.defaultProps = {
-  updatePost: () => {},
-  addPost: () => {},
   post: {}
 };
 

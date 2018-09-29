@@ -41,7 +41,7 @@ a:hover {
 }
 
 /* Post Styles */
-.post-container {
+.post_container {
   background: #fff;
   padding: 50px;
   width: 50%;
@@ -147,7 +147,7 @@ a:hover {
   color: gray;
 }
 
-.control-buttons {
+.control_buttons {
   display: flex;
 }
 

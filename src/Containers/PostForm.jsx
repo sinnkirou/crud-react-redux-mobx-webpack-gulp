@@ -9,7 +9,7 @@ export const PostForm = ({ addPost }) => (
     <div className="navbar">
       <h2 className="center ">Post It</h2>
     </div>
-    <div className="post-container" key="PostForm">
+    <div className="post_container" key="PostForm">
       <h1 className="post_heading">Create Post</h1>
       <EditablePost addPost={addPost} editing={false} />
     </div>

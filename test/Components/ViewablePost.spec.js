@@ -20,9 +20,9 @@ describe('Viewable post component testing', () => {
     const props = _.cloneDeep(defaultProps);
     const renderedComponent = shallow(<ViewablePost {...props} />);
     expect(renderedComponent).to.have.lengthOf(1);
-    const postTitle = renderedComponent.find('h2.postTitle');
+    const postTitle = renderedComponent.find('h2.post_title');
     expect(postTitle).to.have.lengthOf(1);
-    const postMessage = renderedComponent.find('p.postMessage');
+    const postMessage = renderedComponent.find('p.post_message');
     expect(postMessage).to.have.lengthOf(1);
     const editButton = renderedComponent.find('button.edit');
     expect(editButton).to.have.lengthOf(1);

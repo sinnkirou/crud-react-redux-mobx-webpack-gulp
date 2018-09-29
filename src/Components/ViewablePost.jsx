@@ -6,7 +6,7 @@ const ViewablePost = ({ post, editPost, deletePost }) => (
     <h2 className="post_title">{post.title}</h2>
     <p className="post_message">{post.message}</p>
     <p className="post_id">{`id: ${post.id}`}</p>
-    <div className="control-buttons">
+    <div className="control_buttons">
       <button
         className="edit"
         onClick={() =>
