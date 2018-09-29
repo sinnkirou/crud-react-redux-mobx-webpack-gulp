@@ -1,9 +1,10 @@
 const path = require('path');
+
 const src = path.join(__dirname, 'src');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const common = require('./webpack.common.js');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const common = require('./webpack.common.js');
 
 const development = {
   clientConfig: {
