@@ -1,0 +1,65 @@
+C:\Users\ziv.zhao\Documents\crud-react-redux
+├─.env
+├─.eslintignore
+├─.eslintrc
+├─.prettierrc
+├─package-lock.json
+├─package.json
+├─Procfile
+├─README.md
+├─webpack.common.js
+├─webpack.dev.js
+├─webpack.prod.js
+├─test
+|  ├─test_helper.js
+|  ├─Reducers
+|  |    └postReducer.spec.js
+|  ├─Containers
+|  |     ├─AllPosts.spec.js
+|  |     └PostForm.spec.js
+|  ├─Components
+|  |     ├─App.spec.js
+|  |     ├─EditablePost.spec.js
+|  |     ├─Loading.spec.js
+|  |     ├─Router.spec.js
+|  |     └ViewablePost.spec.js
+|  ├─Actions
+|  |    └index.spec.js
+├─src
+|  ├─client.js
+|  ├─index.js
+|  ├─views
+|  |   ├─error.pug
+|  |   ├─index.pug
+|  |   └layout.pug
+|  ├─Utilities
+|  |     └WebpackPugManifestPlugin.js
+|  ├─Reducers
+|  |    ├─index.js
+|  |    └postReducer.js
+|  ├─public
+|  |   ├─favicon.ico
+|  |   ├─stylesheets
+|  |   |      ├─material.min.css
+|  |   |      ├─material.min.js
+|  |   |      └style.css
+|  |   ├─material-icons
+|  |   |       ├─material-icons.css
+|  |   |       ├─MaterialIcons-Regular.eot
+|  |   |       ├─MaterialIcons-Regular.ttf
+|  |   |       ├─MaterialIcons-Regular.woff
+|  |   |       └MaterialIcons-Regular.woff2
+|  ├─Log
+|  |  ├─Logger.js
+|  |  └LogManager.js
+|  ├─Containers
+|  |     ├─AllPosts.jsx
+|  |     └PostForm.jsx
+|  ├─Components
+|  |     ├─App.jsx
+|  |     ├─EditablePost.jsx
+|  |     ├─Loading.jsx
+|  |     ├─Router.jsx
+|  |     └ViewablePost.jsx
+|  ├─Actions
+|  |    └index.js
