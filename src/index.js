@@ -20,6 +20,9 @@ app.use(cookieParser());
 app.use(compression());
 
 if (process.env.NODE_ENV !== 'production') {
+  // loads environment variables from a .env file into process.env
+  require('dotenv').config();
+
   // Applying webpack hot middleware
   const webpack = require('webpack');
   const webpackConfig = require('../webpack.dev.js');
