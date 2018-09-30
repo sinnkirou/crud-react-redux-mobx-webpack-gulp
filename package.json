@@ -97,12 +97,12 @@
     "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
-    "dev": "webpack --watch --config webpack.dev.js --trace-sync-io",
+    "start": "webpack --watch --config webpack.dev.js --trace-sync-io",
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src test --ext js,jsx",
     "lint:fix": "eslint src test --ext js,jsx --fix",
     "testwithoutreport": "cross-env NODE_ENV=test mocha \"test/**/*.spec.js\" --require babel-register --require test/test_helper.js",
     "test": "cross-env NODE_ENV=test nyc --extension .jsx --reporter=lcov --reporter=text mocha \"test/**/*.spec.js\" -t 10000 --require babel-register --require test/test_helper.js",
-    "heroku-postbuild": "npm install && npm run build"
+    "heroku-postbuild": "npm run build"
   }
 }
