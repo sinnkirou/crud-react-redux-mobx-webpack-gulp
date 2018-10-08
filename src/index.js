@@ -8,11 +8,6 @@ import compression from 'compression';
 import { Pool } from 'pg';
 import LogManager from './Log/LogManager';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -48,10 +43,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, '../dist/views'));
 app.set('view engine', 'pug');
 
-app.get('/db', async (req, res) => {
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
+app.get('/db/posts', async (req, res) => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM test_table');
+    const result = await client.query('SELECT * FROM post_table');
     const results = { results: result ? result.rows : null };
     res.send(results);
     client.release();
