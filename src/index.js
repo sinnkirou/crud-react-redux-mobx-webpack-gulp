@@ -5,7 +5,6 @@ import express from 'express';
 import http from 'http';
 import path from 'path';
 import compression from 'compression';
-import { Pool } from 'pg';
 import LogManager from './Log/LogManager';
 
 const app = express();
@@ -42,24 +41,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // view engine setup
 app.set('views', path.join(__dirname, '../dist/views'));
 app.set('view engine', 'pug');
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
-
-app.get('/db/posts', async (req, res) => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT * FROM post_table');
-    const results = { results: result ? result.rows : null };
-    res.send(results);
-    client.release();
-  } catch (err) {
-    LogManager.getConsole().error(err);
-    res.send(`Error ${err}`);
-  }
-});
 
 app.get('*', (req, res) => {
   res.render('index', { title: 'Post a post' });
