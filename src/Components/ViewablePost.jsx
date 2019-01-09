@@ -7,27 +7,11 @@ const ViewablePost = ({ post, editPost, deletePost }) => (
     <p className="post_message">{post.message}</p>
     <p className="post_id">{`id: ${post.id}`}</p>
     <div className="control_buttons">
-      <button
-        className="edit"
-        onClick={() =>
-          editPost({
-            id: post.id
-          })
-        }
-        type="button"
-      >
-        Edit
+      <button className="edit" onClick={() => editPost({ id: post.id })} type="button">
+        {'Edit'}
       </button>
-      <button
-        className="delete"
-        onClick={() =>
-          deletePost({
-            id: post.id
-          })
-        }
-        type="button"
-      >
-        Delete
+      <button className="delete" onClick={() => deletePost({ id: post.id })} type="button">
+        {'Delete'}
       </button>
     </div>
   </div>
