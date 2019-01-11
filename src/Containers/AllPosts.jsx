@@ -13,17 +13,18 @@ import {
 class AllPosts extends Component {
   constructor(props) {
     super(props);
-    this.state = { id: '' };
+    this.state = { keyword: '' };
   }
 
   getPosts = () => {
     const allPosts = [];
     const { posts, updatePost, deletePost, editPost } = this.props;
-    const { id } = this.state;
+    const { keyword } = this.state;
     posts.forEach(post => {
-      if (!id || (id && post.id === Number(id))) {
+      const regex = new RegExp(keyword, 'i');
+      if (!keyword || regex.test(post.title)) {
         allPosts.push(
-          <div key={post.id}>
+          <div key={post.title}>
             {post.editing ? (
               <EditablePost post={post} updatePost={updatePost} editing />
             ) : (
@@ -38,12 +39,12 @@ class AllPosts extends Component {
 
   onChangeHandle = e => {
     e.preventDefault();
-    this.setState({ id: e.target.value });
+    this.setState({ keyword: e.target.value });
   };
 
   render() {
     const { posts } = this.props;
-    const { id } = this.state;
+    const { keyword } = this.state;
     return (
       <div key="AllPosts">
         {posts && posts.length > 0 ? (
@@ -57,8 +58,8 @@ class AllPosts extends Component {
                 className="mdl-textfield__input"
                 type="text"
                 required
-                placeholder="Enter post ID to search"
-                value={id}
+                placeholder="Enter post title to search"
+                value={keyword}
                 onChange={this.onChangeHandle}
               />
             </div>

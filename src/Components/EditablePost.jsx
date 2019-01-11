@@ -63,18 +63,20 @@ class EditablePost extends Component {
 
 EditablePost.propTypes = {
   post: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     editing: PropTypes.bool,
     title: PropTypes.string,
     message: PropTypes.string
   }),
   editing: PropTypes.bool.isRequired,
-  updatePost: PropTypes.func.isRequired,
-  addPost: PropTypes.func.isRequired
+  updatePost: PropTypes.func,
+  addPost: PropTypes.func
 };
 
 EditablePost.defaultProps = {
-  post: {}
+  post: {},
+  updatePost: () => {},
+  addPost: () => {}
 };
 
 export default EditablePost;

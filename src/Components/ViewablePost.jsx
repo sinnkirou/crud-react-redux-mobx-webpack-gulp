@@ -19,7 +19,7 @@ const ViewablePost = ({ post, editPost, deletePost }) => (
 
 ViewablePost.propTypes = {
   post: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     editing: PropTypes.bool,
     title: PropTypes.string,
     message: PropTypes.string

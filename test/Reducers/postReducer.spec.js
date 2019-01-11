@@ -28,17 +28,20 @@ describe('Reducers testing', () => {
       message: 'newmessage',
       title: 'newtitle'
     };
-    expect(JSON.stringify(postReducer(state, action))).to.equal(
-      JSON.stringify([
-        {
-          ...state[0]
-        },
-        {
-          ...action.data,
-          id: 2
-        }
-      ])
-    );
+    const actualResult = postReducer(state, action);
+    const expectResult = [
+      {
+        ...state[0]
+      },
+      {
+        ...action.data,
+        id: 2
+      }
+    ];
+    actualResult.forEach((item, index) => {
+      expect(item.message).to.equal(expectResult[index].message);
+      expect(item.title).to.equal(expectResult[index].title);
+    });
   });
 
   it('can handle deletePost', () => {

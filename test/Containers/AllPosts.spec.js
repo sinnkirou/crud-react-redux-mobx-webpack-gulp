@@ -14,13 +14,13 @@ describe('AllPosts component testing', () => {
         editing: false,
         message: 'message',
         title: 'title',
-        id: 1
+        id: '1'
       },
       {
         editing: false,
         message: 'message2',
         title: 'title2',
-        id: 2
+        id: '2'
       }
     ];
 
@@ -35,15 +35,15 @@ describe('AllPosts component testing', () => {
     const initialState = [
       {
         editing: false,
-        message: 'message',
-        title: 'title',
-        id: 1
+        message: 'message1',
+        title: 'title1',
+        id: '1'
       },
       {
         editing: true,
-        message: 'message',
-        title: 'title',
-        id: 2
+        message: 'message2',
+        title: 'title2',
+        id: '2'
       }
     ];
     const store = mockStore({ postReducer: initialState });
@@ -62,9 +62,9 @@ describe('AllPosts component testing', () => {
       const initialState = [
         {
           editing: false,
-          message: 'message',
-          title: 'title',
-          id: 1
+          message: 'message1',
+          title: 'title1',
+          id: '1'
         }
       ];
       const store = mockStore({ postReducer: initialState });
@@ -78,23 +78,23 @@ describe('AllPosts component testing', () => {
     });
 
     it('should display at least one post when search successfully', () => {
-      expect(renderedComponent.instance().state.id).to.equal('');
+      expect(renderedComponent.instance().state.keyword).to.equal('');
       searchBox.simulate('change', {
         target: { value: '1' },
         preventDefault() {}
       });
-      expect(renderedComponent.instance().state.id).to.equal('1');
+      expect(renderedComponent.instance().state.keyword).to.equal('1');
       const viewablePost = renderedComponent.find('ViewablePost');
       expect(viewablePost).to.have.lengthOf(1);
     });
 
     it('should display none when search failed', () => {
-      expect(renderedComponent.instance().state.id).to.equal('');
+      expect(renderedComponent.instance().state.keyword).to.equal('');
       searchBox.simulate('change', {
         target: { value: '2' },
         preventDefault() {}
       });
-      expect(renderedComponent.instance().state.id).to.equal('2');
+      expect(renderedComponent.instance().state.keyword).to.equal('2');
       const viewablePost = renderedComponent.find('ViewablePost');
       expect(viewablePost).to.have.lengthOf(0);
     });

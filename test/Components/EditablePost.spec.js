@@ -12,9 +12,7 @@ describe('Editable post component testing', () => {
       title: 'title',
       id: 1
     },
-    editing: true,
-    updatePost: () => {},
-    addPost: () => {}
+    editing: true
   };
   let renderedComponent;
 

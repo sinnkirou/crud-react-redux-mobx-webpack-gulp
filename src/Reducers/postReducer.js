@@ -1,7 +1,9 @@
+import uuid from 'uuid/v1';
+
 const postReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_POST':
-      return state.concat([{ ...action.data, id: state.length + 1 }]);
+      return state.concat([{ ...action.data, id: uuid() }]);
     case 'DELETE_POST':
       return state.filter(post => post.id !== action.id);
     case 'EDIT_POST':
