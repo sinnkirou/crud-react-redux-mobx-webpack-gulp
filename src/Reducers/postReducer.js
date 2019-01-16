@@ -1,16 +1,17 @@
 import uuid from 'uuid/v1';
+import actionTypes from '../Constants/actionTypes';
 
 const postReducer = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_POST':
+    case actionTypes.ADD_POST:
       return state.concat([{ ...action.data, id: uuid() }]);
-    case 'DELETE_POST':
+    case actionTypes.DELETE_POST:
       return state.filter(post => post.id !== action.id);
-    case 'EDIT_POST':
+    case actionTypes.EDIT_POST:
       return state.map(post =>
         post.id === action.id ? { ...post, editing: !post.editing } : post
       );
-    case 'UPDATE_POST':
+    case actionTypes.UPDATE_POST:
       return state.map(post => {
         if (post.id === action.id) {
           return {
@@ -21,6 +22,8 @@ const postReducer = (state = [], action) => {
         }
         return post;
       });
+    case actionTypes.SET_POSTS:
+      return action.data;
     default:
       return state;
   }

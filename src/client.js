@@ -9,12 +9,14 @@ import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import rootReducer from './Reducers';
 import App from './Components/App';
+import { getInitPosts } from './Actions';
 
 const history = createBrowserHistory();
 const store = createStore(
   connectRouter(history)(rootReducer),
   applyMiddleware(routerMiddleware(history), thunk)
 );
+store.dispatch(getInitPosts());
 const approot = document.querySelector('#app');
 
 const render = Component => {
