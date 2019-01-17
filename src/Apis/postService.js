@@ -21,6 +21,6 @@ const InitialPosts = [
 
 export default {
   getPosts(resolve) {
-    setTimeout(() => resolve(InitialPosts), 1000);
+    return new Promise(() => setTimeout(() => resolve(InitialPosts), 1000));
   }
 };

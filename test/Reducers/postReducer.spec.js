@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import _ from 'lodash';
 import postReducer from '../../src/Reducers/postReducer';
+import actionTypes from '../../src/Constants/actionTypes';
 
 describe('Reducers testing', () => {
   const defaultState = [
@@ -12,7 +13,7 @@ describe('Reducers testing', () => {
     }
   ];
   const defaultAction = {
-    type: 'ADD_POST'
+    type: actionTypes.ADD_POST
   };
 
   it('when default', () => {
@@ -22,7 +23,7 @@ describe('Reducers testing', () => {
   it('can handle addPost', () => {
     const state = _.cloneDeep(defaultState);
     const action = _.cloneDeep(defaultAction);
-    action.type = 'ADD_POST';
+    action.type = actionTypes.ADD_POST;
     action.data = {
       editing: false,
       message: 'newmessage',
@@ -47,7 +48,7 @@ describe('Reducers testing', () => {
   it('can handle deletePost', () => {
     const state = _.cloneDeep(defaultState);
     const action = _.cloneDeep(defaultAction);
-    action.type = 'DELETE_POST';
+    action.type = actionTypes.DELETE_POST;
     action.id = 1;
     expect(JSON.stringify(postReducer(state, action))).to.equal(JSON.stringify([]));
   });
@@ -55,7 +56,7 @@ describe('Reducers testing', () => {
   it('can handle editPost when id matched', () => {
     const state = _.cloneDeep(defaultState);
     const action = _.cloneDeep(defaultAction);
-    action.type = 'EDIT_POST';
+    action.type = actionTypes.EDIT_POST;
     action.id = 1;
     expect(JSON.stringify(postReducer(state, action))).to.equal(
       JSON.stringify([
@@ -72,7 +73,7 @@ describe('Reducers testing', () => {
   it('can handle editPost when id not match', () => {
     const state = _.cloneDeep(defaultState);
     const action = _.cloneDeep(defaultAction);
-    action.type = 'EDIT_POST';
+    action.type = actionTypes.EDIT_POST;
     action.id = 2;
     expect(JSON.stringify(postReducer(state, action))).to.equal(JSON.stringify(state));
   });
@@ -80,7 +81,7 @@ describe('Reducers testing', () => {
   it('can handle updatePost when id matched', () => {
     const state = _.cloneDeep(defaultState);
     const action = _.cloneDeep(defaultAction);
-    action.type = 'UPDATE_POST';
+    action.type = actionTypes.UPDATE_POST;
     action.id = 1;
     action.data = {
       message: 'newmessage',
@@ -101,7 +102,7 @@ describe('Reducers testing', () => {
   it('can handle updatePost when id not match', () => {
     const state = _.cloneDeep(defaultState);
     const action = _.cloneDeep(defaultAction);
-    action.type = 'UPDATE_POST';
+    action.type = actionTypes.UPDATE_POST;
     action.id = 2;
     action.data = {
       message: 'newmessage',

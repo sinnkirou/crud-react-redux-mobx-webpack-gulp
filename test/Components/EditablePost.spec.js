@@ -10,7 +10,7 @@ describe('Editable post component testing', () => {
       editing: false,
       message: 'message',
       title: 'title',
-      id: 1
+      id: '1'
     },
     editing: true
   };

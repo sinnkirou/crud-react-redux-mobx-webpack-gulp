@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { PostForm, mapDispatchToProps } from '../../src/Containers/PostForm';
+import actionTypes from '../../src/Constants/actionTypes';
 
 // Testing with unconnected component.
 describe('PostForm component testing', () => {
@@ -28,6 +29,6 @@ describe('PostForm component testing', () => {
       }
     };
     mapDispatchToProps(dispatch).addPost({});
-    expect(expectedType).to.equal('ADD_POST');
+    expect(expectedType).to.equal(actionTypes.ADD_POST);
   });
 });

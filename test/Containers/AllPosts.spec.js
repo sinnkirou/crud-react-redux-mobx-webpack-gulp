@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import configureStore from 'redux-mock-store';
 import AllPosts from '../../src/Containers/AllPosts';
+import actionTypes from '../../src/Constants/actionTypes';
 
 // Testing with connected component.
 describe('AllPosts component testing', () => {
@@ -123,19 +124,19 @@ describe('AllPosts component testing', () => {
     it('editPost shoule work', () => {
       renderedComponent.instance().props.editPost({ id: '1' });
       const actions = store.getActions();
-      expect(actions[0].type).to.equal('EDIT_POST');
+      expect(actions[0].type).to.equal(actionTypes.EDIT_POST);
     });
 
     it('deletePost shoule work', () => {
       renderedComponent.instance().props.deletePost({ id: '1' });
       const actions = store.getActions();
-      expect(actions[0].type).to.equal('DELETE_POST');
+      expect(actions[0].type).to.equal(actionTypes.DELETE_POST);
     });
 
     it('updatePost shoule work', () => {
       renderedComponent.instance().props.updatePost({ id: '1', data: {} });
       const actions = store.getActions();
-      expect(actions[0].type).to.equal('UPDATE_POST');
+      expect(actions[0].type).to.equal(actionTypes.UPDATE_POST);
     });
   });
 });
