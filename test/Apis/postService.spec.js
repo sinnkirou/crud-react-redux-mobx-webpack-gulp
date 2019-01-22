@@ -1,14 +1,13 @@
 import { expect } from 'chai';
-import postService from '../../src/Apis/postService';
+import postService, { InitialPosts } from '../../src/Apis/postService';
 
 describe('services testing', () => {
-  it('can call getPosts', () => {
-    let triggered = false;
-    const resolve = () => {
-      triggered = true;
+  it('can call getPosts', done => {
+    const resolve = data => {
+      expect(data).to.equal(InitialPosts);
+      done();
     };
-    postService.getPosts(resolve).then(() => {
-      expect(triggered).to.equal(true);
-    });
+
+    postService.getPosts(resolve);
   });
 });

@@ -108,7 +108,7 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src test --ext js,jsx",
     "lint:fix": "eslint src test --ext js,jsx --fix",
-    "testwithoutreport": "cross-env NODE_ENV=test mocha \"test/**/*.spec.js\" --require babel-register --require test/test_helper.js",
+    "test:quick": "cross-env NODE_ENV=test mocha \"test/**/*.spec.js\" --require babel-register --require test/test_helper.js",
     "test": "cross-env NODE_ENV=test nyc --extension .jsx --reporter=lcov --reporter=text mocha \"test/**/*.spec.js\" -t 10000 --require babel-register --require test/test_helper.js",
     "heroku-postbuild": "npm run build",
     "treer": "treer -i \"/^.git|node_modules|.nyc_output|.vscode|coverage|dist|crud.log.gz|treerOutput$/\" -e treerOutput"
