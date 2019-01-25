@@ -35,7 +35,7 @@ class EditablePost extends Component {
             ref={input => {
               this.getTitle = input;
             }}
-            defaultValue={_.isEmpty(post) ? post.title : ''}
+            defaultValue={!_.isEmpty(post) ? post.title : ''}
             placeholder="Enter Post Title"
           />
           <br />
@@ -46,7 +46,7 @@ class EditablePost extends Component {
             ref={input => {
               this.getMessage = input;
             }}
-            defaultValue={_.isEmpty(post) ? post.message : ''}
+            defaultValue={!_.isEmpty(post) ? post.message : ''}
             cols="28"
             placeholder="Enter Post"
           />
