@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import store from '../Store';
 
 class EditablePost extends Component {
   handleSubmit = e => {
@@ -11,11 +12,11 @@ class EditablePost extends Component {
       title,
       message
     };
-    const { editing, post, updatePost, addPost } = this.props;
+    const { post, editing } = this.props;
     if (editing) {
-      updatePost({ id: post.id, data });
+      store.updatePost({ id: post.id, data });
     } else {
-      addPost({
+      store.addPost({
         ...data
       });
       this.getTitle.value = '';
@@ -35,7 +36,7 @@ class EditablePost extends Component {
             ref={input => {
               this.getTitle = input;
             }}
-            defaultValue={_.isEmpty(post) ? post.title : ''}
+            defaultValue={!_.isEmpty(post) ? post.title : ''}
             placeholder="Enter Post Title"
           />
           <br />
@@ -46,7 +47,7 @@ class EditablePost extends Component {
             ref={input => {
               this.getMessage = input;
             }}
-            defaultValue={_.isEmpty(post) ? post.message : ''}
+            defaultValue={!_.isEmpty(post) ? post.message : ''}
             cols="28"
             placeholder="Enter Post"
           />
@@ -68,15 +69,11 @@ EditablePost.propTypes = {
     title: PropTypes.string,
     message: PropTypes.string
   }),
-  editing: PropTypes.bool.isRequired,
-  updatePost: PropTypes.func,
-  addPost: PropTypes.func
+  editing: PropTypes.bool.isRequired
 };
 
 EditablePost.defaultProps = {
-  post: {},
-  updatePost: () => {},
-  addPost: () => {}
+  post: {}
 };
 
 export default EditablePost;

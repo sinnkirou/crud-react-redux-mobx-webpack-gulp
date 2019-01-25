@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
-import PropTypes from 'prop-types';
+import { BrowserRouter, Link } from 'react-router-dom';
 import Router from './Router';
 
-const App = ({ history }) => (
-  <ConnectedRouter history={history}>
+const App = () => (
+  <BrowserRouter>
     <div className="App" key="App">
       <button
         id="demo-menu-lower-left"
@@ -27,11 +25,7 @@ const App = ({ history }) => (
       </ul>
       <Router key={Math.random()} />
     </div>
-  </ConnectedRouter>
+  </BrowserRouter>
 );
 
 export default App;
-
-App.propTypes = {
-  history: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
-};
