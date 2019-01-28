@@ -1,8 +1,12 @@
 import uuid from 'uuid/v1';
-import { decorate, observable, action, computed } from 'mobx';
+import { decorate, observable, action, computed, autorun } from 'mobx';
 import postService from '../Apis/postService';
 
 class Store {
+  constructor() {
+    autorun(() => console.log(this.log)); // eslint-disable-line no-console
+  }
+
   posts = [];
 
   addPost(payload) {
@@ -43,6 +47,10 @@ class Store {
   get postsCount() {
     return this.posts.length;
   }
+
+  get log() {
+    return `Total "${this.posts.length}" posts`;
+  }
 }
 
 decorate(Store, {
@@ -55,4 +63,5 @@ decorate(Store, {
 });
 
 const postStore = new Store();
+
 export default postStore;
