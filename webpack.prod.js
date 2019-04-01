@@ -9,7 +9,7 @@ const production = {
   clientConfig: {
     mode: 'production',
     entry: {
-      client: [path.join(src, 'client.js')]
+      client: ['@babel/polyfill', path.join(src, 'client.js')]
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
