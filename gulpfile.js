@@ -8,22 +8,6 @@ const plugins = require('gulp-load-plugins')();
 
 const BUILDDIR = './dist/';
 
-function string_src(filename, content) {
-  var src = require('stream').Readable({ objectMode: true });
-  src._read = function() {
-    this.push(
-      new gutil.File({
-        cwd: '',
-        base: '',
-        path: filename,
-        contents: new Buffer(content)
-      })
-    );
-    this.push(null);
-  };
-  return src;
-}
-
 gulp.task('manifest', function() {
   const content = "script(src='client.js')";
   const filename = 'manifest.pug';

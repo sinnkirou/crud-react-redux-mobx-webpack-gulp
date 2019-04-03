@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import Loading from './Loading';
 
+//pending
 import PostForm from '../Containers/PostForm';
 import AllPosts from '../Containers/AllPosts';
 

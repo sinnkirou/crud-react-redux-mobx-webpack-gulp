@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(compression());
 
+//pending
 // if (process.env.NODE_ENV !== 'production') {
 //   // loads environment variables from a .env file into process.env
 //   require('dotenv').config();
