@@ -13,26 +13,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(compression());
 
-if (process.env.NODE_ENV !== 'production') {
-  // loads environment variables from a .env file into process.env
-  require('dotenv').config();
+// if (process.env.NODE_ENV !== 'production') {
+//   // loads environment variables from a .env file into process.env
+//   require('dotenv').config();
 
-  // Applying webpack hot middleware
-  const webpack = require('webpack');
-  const webpackConfig = require('../webpack.dev.js');
-  webpackConfig.forEach(config => {
-    if (config.target === 'web') {
-      const compiler = webpack(config);
-      app.use(
-        require('webpack-dev-middleware')(compiler, {
-          noInfo: true,
-          publicPath: config.output.publicPath
-        })
-      );
-      app.use(require('webpack-hot-middleware')(compiler));
-    }
-  });
-}
+//   // Applying webpack hot middleware
+//   const webpack = require('webpack');
+//   const webpackConfig = require('../webpack.dev.js');
+//   webpackConfig.forEach(config => {
+//     if (config.target === 'web') {
+//       const compiler = webpack(config);
+//       app.use(
+//         require('webpack-dev-middleware')(compiler, {
+//           noInfo: true,
+//           publicPath: config.output.publicPath
+//         })
+//       );
+//       app.use(require('webpack-hot-middleware')(compiler));
+//     }
+//   });
+// }
 
 // Serving static files
 app.use(express.static(path.join(__dirname, '../dist')));
