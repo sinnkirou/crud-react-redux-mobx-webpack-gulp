@@ -161,6 +161,7 @@
     "heroku-postbuild": "npm run build",
     "treer": "treer -i \"/^.git|node_modules|.nyc_output|.vscode|coverage|dist|crud.log.gz|treerOutput$/\" -e treerOutput",
     "gulp": "gulp",
+    "gulp:build": "gulp build_prod",
     "babel-upgrade": "npx babel-upgrade --write --install"
   }
 }

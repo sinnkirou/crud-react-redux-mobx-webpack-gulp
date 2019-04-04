@@ -8,6 +8,22 @@ const plugins = require('gulp-load-plugins')();
 
 const BUILDDIR = './dist/';
 
+function uglifyJsWhenNeeded(stream) {
+  if (process.env.NODE_ENV === 'production') {
+    return stream.pipe(plugins.uglify());
+  }
+  return stream;
+}
+
+function sourceMapWhenNeeded(stream) {
+  if (process.env.NODE_ENV !== 'production') {
+    return stream
+      .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+      .pipe(plugins.sourcemaps.write('.'));
+  }
+  return stream;
+}
+
 gulp.task('manifest', function() {
   const content = "script(src='client.js')";
   const filename = 'manifest.pug';
@@ -26,47 +42,44 @@ gulp.task('copyStaticFiles', function() {
     .pipe(gulp.dest(BUILDDIR));
 });
 
-gulp.task('log', function() {
-  return gulp
-    .src(['./src/Log/**'], { base: './src/' })
-    .pipe(plugins.babel())
-    .pipe(plugins.uglify())
-    .pipe(gulp.dest(BUILDDIR));
+gulp.task('compileLog', function() {
+  let stream = gulp.src(['./src/Log/**'], { base: './src/' }).pipe(plugins.babel());
+  stream = uglifyJsWhenNeeded(stream);
+  stream = sourceMapWhenNeeded(stream);
+  return stream.pipe(gulp.dest(BUILDDIR));
 });
 
 gulp.task('server', function() {
-  return gulp
+  let stream = gulp
     .src(['./src/index.js'], { base: './src/' })
     .pipe(plugins.babel())
-    .pipe(plugins.rename('main.js'))
-    .pipe(plugins.uglify())
-    .pipe(plugins.sourcemaps.init({ loadMaps: true }))
-    .pipe(plugins.sourcemaps.write('.'))
-    .pipe(gulp.dest(BUILDDIR));
+    .pipe(plugins.rename('main.js'));
+  stream = uglifyJsWhenNeeded(stream);
+  stream = sourceMapWhenNeeded(stream);
+  return stream.pipe(gulp.dest(BUILDDIR));
 });
 
 gulp.task('client', function() {
   let b = browserify({
     entries: './src/client.js',
-    debug: true, // Used for sourcemaps.
+    debug: process.env.NODE_ENV !== 'production', // Used for sourcemaps.
     extensions: ['.jsx']
   });
-  return b
+  let stream = b
     .transform(babelify)
     .bundle()
     .pipe(source('client.js'))
-    .pipe(buffer())
-    .pipe(plugins.uglify())
-    .pipe(plugins.sourcemaps.init({ loadMaps: true }))
-    .pipe(plugins.sourcemaps.write('.'))
-    .pipe(gulp.dest(BUILDDIR));
+    .pipe(buffer());
+  stream = uglifyJsWhenNeeded(stream);
+  stream = sourceMapWhenNeeded(stream);
+  return stream.pipe(gulp.dest(BUILDDIR));
 });
 
 gulp.task('nodemon', function(done) {
   var stream = plugins.nodemon({
-    script: './dist/main.js',
+    script: BUILDDIR + 'main.js',
     ext: 'js jsx pug',
-    ignore: ['dist/'],
+    ignore: [BUILDDIR],
     env: { NODE_ENV: 'development' },
     tasks: ['build'],
     done: done
@@ -82,9 +95,29 @@ gulp.task('nodemon', function(done) {
     });
 });
 
-gulp.task('build', gulp.parallel('client', 'server', 'log'));
+gulp.task('build', gulp.parallel('client', 'server', 'compileLog'));
+
+gulp.task('set-dev-node-env', async function() {
+  await (process.env.NODE_ENV = 'development');
+});
+
+gulp.task('set-prod-node-env', async function() {
+  await (process.env.NODE_ENV = 'production');
+});
 
 gulp.task(
   'default',
-  gulp.series('clean', gulp.parallel('copyStaticFiles', 'build', 'manifest'), 'nodemon')
+  gulp.series(
+    gulp.parallel('set-dev-node-env', 'clean'),
+    gulp.parallel('copyStaticFiles', 'build', 'manifest'),
+    'nodemon'
+  )
+);
+
+gulp.task(
+  'build_prod',
+  gulp.series(
+    gulp.parallel('set-prod-node-env', 'clean'),
+    gulp.parallel('copyStaticFiles', 'build', 'manifest')
+  )
 );
