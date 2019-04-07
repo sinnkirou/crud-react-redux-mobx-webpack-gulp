@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(compression());
 
-//comment this block when using gulp
+// comment this block when using gulp
 if (process.env.NODE_ENV !== 'production') {
   // loads environment variables from a .env file into process.env
   require('dotenv').config();
