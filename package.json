@@ -28,8 +28,7 @@
       "@babel/plugin-proposal-function-sent",
       "@babel/plugin-proposal-export-namespace-from",
       "@babel/plugin-proposal-numeric-separator",
-      "@babel/plugin-proposal-throw-expressions",
-      "dynamic-import-node"
+      "@babel/plugin-proposal-throw-expressions"
     ],
     "comments": true,
     "env": {
@@ -103,7 +102,6 @@
     "@babel/runtime-corejs2": "^7.4.2",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
-    "babel-plugin-dynamic-import-node": "^2.2.0",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
     "chai": "^4.1.2",
