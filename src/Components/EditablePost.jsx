@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 class EditablePost extends Component {
+  constructor(props) {
+    super(props);
+    this.getMessage = input => {
+      this.getMessage = input;
+    };
+    this.getTitle = input => {
+      this.getTitle = input;
+    };
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     const title = this.getTitle.value;
@@ -32,9 +42,7 @@ class EditablePost extends Component {
           <input
             required
             type="text"
-            ref={input => {
-              this.getTitle = input;
-            }}
+            ref={this.getTitle}
             defaultValue={!_.isEmpty(post) ? post.title : ''}
             placeholder="Enter Post Title"
           />
@@ -43,9 +51,7 @@ class EditablePost extends Component {
           <textarea
             required
             rows="5"
-            ref={input => {
-              this.getMessage = input;
-            }}
+            ref={this.getMessage}
             defaultValue={!_.isEmpty(post) ? post.message : ''}
             cols="28"
             placeholder="Enter Post"
