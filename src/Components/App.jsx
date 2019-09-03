@@ -24,6 +24,9 @@ const App = ({ history }) => (
         <li className="mdl-menu__item">
           <Link to="/posts">Posts</Link>
         </li>
+        <li className="mdl-menu__item">
+          <Link to="/chat">Chat</Link>
+        </li>
       </ul>
       <Router key={Math.random()} />
     </div>

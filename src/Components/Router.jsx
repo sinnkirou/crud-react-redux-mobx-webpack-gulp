@@ -16,6 +16,11 @@ export const AllPosts = Loadable({
   loading: Loading
 });
 
+export const ChatRoom = Loadable({
+  loader: () => import(/* webpackChunkName: "allPosts" */ '../Containers/ChatRoom'),
+  loading: Loading
+});
+
 const routes = [
   {
     path: '/',
@@ -25,6 +30,10 @@ const routes = [
   {
     path: '/posts',
     component: AllPosts
+  },
+  {
+    path: '/chat',
+    component: ChatRoom
   }
 ];
 

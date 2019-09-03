@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable global-require */
 import cookieParser from 'cookie-parser';
 import createError from 'http-errors';
@@ -5,6 +6,7 @@ import express from 'express';
 import http from 'http';
 import path from 'path';
 import compression from 'compression';
+import { server as WebSocketServer } from 'websocket';
 import LogManager from './Log/LogManager';
 
 const app = express();
@@ -149,3 +151,42 @@ function onListening() {
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+const wsServer = new WebSocketServer({
+  httpServer: server,
+  // You should not use autoAcceptConnections for production
+  // applications, as it defeats all standard cross-origin protection
+  // facilities built into the protocol and the browser.  You should
+  // *always* verify the connection's origin and decide whether or not
+  // to accept it.
+  autoAcceptConnections: false
+});
+
+function originIsAllowed() {
+  // put logic here to detect whether the specified origin is allowed.
+  return true;
+}
+
+wsServer.on('request', request => {
+  if (!originIsAllowed()) {
+    // Make sure we only accept requests from an allowed origin
+    request.reject();
+    console.log(`${new Date()} Connection from origin ${request.origin} rejected.`);
+    return;
+  }
+
+  const connection = request.accept('echo-protocol', request.origin);
+  console.log(`${new Date()} Connection accepted.`);
+  connection.on('message', message => {
+    if (message.type === 'utf8') {
+      console.log(`Server Received Message: ${message.utf8Data}`);
+      connection.sendUTF(message.utf8Data);
+    } else if (message.type === 'binary') {
+      console.log(`Server Received Binary Message of ${message.binaryData.length} bytes`);
+      connection.sendBytes(message.binaryData);
+    }
+  });
+  connection.on('close', () => {
+    console.log(`${new Date()} Peer ${connection.remoteAddress} disconnected.`);
+  });
+});
