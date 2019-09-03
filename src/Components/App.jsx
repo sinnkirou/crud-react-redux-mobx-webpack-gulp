@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import Router from './Router';
+import CharWidget from './ChatWidget';
 
 const App = ({ history }) => (
   <ConnectedRouter history={history}>
@@ -29,6 +30,7 @@ const App = ({ history }) => (
         </li>
       </ul>
       <Router key={Math.random()} />
+      <CharWidget />
     </div>
   </ConnectedRouter>
 );
