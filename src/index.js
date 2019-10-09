@@ -159,7 +159,9 @@ const wsServer = new WebSocketServer({
   // facilities built into the protocol and the browser.  You should
   // *always* verify the connection's origin and decide whether or not
   // to accept it.
-  autoAcceptConnections: false
+  autoAcceptConnections: false,
+  maxReceivedFrameSize: 140000,
+  maxReceivedMessageSize: 10 * 1024 * 1024
 });
 
 function originIsAllowed() {
@@ -178,6 +180,7 @@ wsServer.on('request', request => {
   const connection = request.accept('echo-protocol', request.origin);
   console.log(`${new Date()} Connection accepted.`);
   connection.on('message', message => {
+    console.dir(message);
     if (message.type === 'utf8') {
       console.log(`Server Received Message: ${message.utf8Data}`);
       connection.sendUTF(message.utf8Data);
@@ -186,7 +189,14 @@ wsServer.on('request', request => {
       connection.sendBytes(message.binaryData);
     }
   });
-  connection.on('close', () => {
-    console.log(`${new Date()} Peer ${connection.remoteAddress} disconnected.`);
+  connection.on('close', (reasonCode, description) => {
+    console.log(
+      `${new Date()} Peer ${
+        connection.remoteAddress
+      } disconnected.reasonCode:${reasonCode}; description;${description}`
+    );
+  });
+  connection.on('error', () => {
+    console.log(`${new Date()} Peer ${connection.error} disconnected.`);
   });
 });
